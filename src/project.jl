@@ -45,6 +45,25 @@ function default_clone_name(url)
     return name
 end
 
+function withproject(command, glob, msg)
+    script = "using Pkg;"
+    if !glob
+        script *= "(dirname(dirname(dirname(Pkg.project().path))) in DEPOT_PATH) && error(\"$msg\");"
+    end
+
+    script *= command
+    cmd = Cmd(["-e", script])
+
+    if glob
+        run(`$(Base.julia_cmd()) $cmd`)
+    else
+        withenv("JULIA_PROJECT"=>"@.") do
+            run(`$(Base.julia_cmd()) $cmd`)
+        end
+    end
+    return
+end
+
 """
 clone a package repo to a local directory.
 
@@ -91,22 +110,11 @@ add package/project to the closest project.
 
     kw = join(kwargs, ", ")
 
-    script = "using Pkg;"
-    if !glob
-        err_msg = "cannot install to global environment, use -g, --glob to install a package to global environment"
-        script *= "(dirname(dirname(dirname(Pkg.project().path))) in DEPOT_PATH) && error(\"$err_msg\");"
-    end
-
-    script *= "Pkg.add(;$kw);"
-    cmd = Cmd(["-e", script])
-
-    if glob
-        run(`$(Base.julia_cmd()) $cmd`)
-    else
-        withenv("JULIA_PROJECT"=>"@.") do
-            run(`$(Base.julia_cmd()) $cmd`)
-        end
-    end
+    withproject(
+        "Pkg.add(;$kw);",
+        glob,
+        "cannot install to global environment, use -g, --glob to install a package to global environment"
+    )
 end
 
 """
@@ -124,7 +132,7 @@ to the dev folder of the current project. You can specify `--shared` flag to use
 - `-s, --shared`: controls whether to use the shared develop folder.
 
 """
-@cast function dev(url; shared::Bool=false)
+@cast function dev(url; shared::Bool=false, glob::Bool=false)
     shared_flag = shared ? "--shared" : "--local"
     cmd = Cmd(["-e", "using Pkg; pkg\"dev $shared_flag $url\" "])
     withenv("JULIA_PROJECT"=>"@.") do
@@ -139,23 +147,49 @@ Update a package. If no posistional argument is given, update all packages in cu
 
 - `pkg`: package name.
 """
-@cast function update(pkg="")
+@cast function update(pkg=""; glob::Bool=false)
     if isempty(pkg)
-        cmd = Cmd(["-e", "using Pkg; pkg\"up\" "])
+        cmd = "pkg\"up\""
     else
-        cmd = Cmd(["-e", "using Pkg; pkg\"up $pkg\" "])
+        cmd = "pkg\"up $pkg\""
     end
-    withenv("JULIA_PROJECT"=>"@.") do
-        run(`$(Base.julia_cmd()) $cmd`)
-    end
+
+    withproject(cmd, glob, "cannot update global environment, use -g, --glob to update global environment")
 end
 
 @doc Docs.doc(update)
 @cast up(pkg="") = update(pkg)
 
 """
+build package/project/environment
+
+# Arguments
+
+- `pkg`: package name.
+
+# Flags
+
+- `-v, --verbose`: print verbose log
+- `-g, --glob`: enable to build in global shared environment
 """
-@cast function build(pkg=""; verbose::Bool=false)
+@cast function build(pkg=""; verbose::Bool=false, glob::Bool=false)
+    if isempty(pkg)
+        cmd = "pkg\"build\""
+    else
+        cmd = "pkg\"build $pkg\""
+    end
+
+    withproject(cmd, glob, "cannot build global environment, use -g, --glob to build global environment")
+end
+
+@cast function test(pkg=""; glob::Bool=false)
+    if isempty(pkg)
+        cmd = "Pkg.test()"
+    else
+        cmd = "Pkg.test(\"$pkg\")"
+    end
+
+    withproject(cmd, glob, "cannot test in global environment, use -g, --glob to test in global environment")
 end
 
 # @cast function register()
