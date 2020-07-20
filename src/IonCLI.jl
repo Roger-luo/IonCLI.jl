@@ -14,8 +14,6 @@ include("utils.jl")
 The Ion manager.
 """
 
-# include("cmd.jl")
-
 include("precompile.jl")
 _precompile_()
 

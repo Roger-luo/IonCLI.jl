@@ -1,2 +1,2 @@
-using Comonicon, Ion
-Comonicon.install(Ion, "ion"; compile=:min)
+using Comonicon, IonCLI
+Comonicon.install(IonCLI, "ion"; compile=:min)
