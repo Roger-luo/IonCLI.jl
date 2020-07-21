@@ -1,6 +1,7 @@
 .DS_Store
 /dev/
 /deps/build.log
+/deps/precompile.jl
 /deps/lib
 .vscode
 /bin/
