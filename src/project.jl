@@ -31,6 +31,7 @@ create a project or package.
 
     # TODO: use .ionrc to save user configuration
     # and reuse it next time
+    # TODO: scan username in git config
     t = Template(;dir=dirname(fullpath))
     t(basename(path))
     return
@@ -45,9 +46,10 @@ function default_clone_name(url)
     return name
 end
 
-function withproject(command, glob, msg)
+function withproject(command, glob, action_msg)
     script = "using Pkg;"
     if !glob
+        msg = "cannot $action_msg in global environment, use -g, --glob to $action_msg to global environment"
         script *= "(dirname(dirname(dirname(Pkg.project().path))) in DEPOT_PATH) && error(\"$msg\");"
     end
 
@@ -113,7 +115,7 @@ add package/project to the closest project.
     withproject(
         "Pkg.add(;$kw);",
         glob,
-        "cannot install to global environment, use -g, --glob to install a package to global environment"
+        "install a package"
     )
 end
 
@@ -154,7 +156,7 @@ Update a package. If no posistional argument is given, update all packages in cu
         cmd = "pkg\"up $pkg\""
     end
 
-    withproject(cmd, glob, "cannot update global environment, use -g, --glob to update global environment")
+    withproject(cmd, glob, "update dependencies")
 end
 
 @doc Docs.doc(update)
@@ -179,9 +181,20 @@ build package/project/environment
         cmd = "pkg\"build $pkg\""
     end
 
-    withproject(cmd, glob, "cannot build global environment, use -g, --glob to build global environment")
+    withproject(cmd, glob, "build")
 end
 
+"""
+test package/project
+
+# Arguments
+
+- `pkg`: package name.
+
+# Flags
+
+- `-g, --glob`: enable to test in global shared environment
+"""
 @cast function test(pkg=""; glob::Bool=false)
     if isempty(pkg)
         cmd = "Pkg.test()"
@@ -189,7 +202,60 @@ end
         cmd = "Pkg.test(\"$pkg\")"
     end
 
-    withproject(cmd, glob, "cannot test in global environment, use -g, --glob to test in global environment")
+    withproject(cmd, glob, "test")
+end
+
+
+"""
+test package/project
+
+# Arguments
+
+- `pkg`: package name.
+
+# Flags
+
+- `-d, --diff`: show diff to last git commit
+- `-g, --glob`: enable to show status in global shared environment
+"""
+@cast function status(pkg=""; diff::Bool=false, glob::Bool=false)
+    if isempty(pkg)
+        cmd = "Pkg.status(;diff=$diff)"
+    else
+        cmd = "Pkg.status($pkg; diff=$diff)"
+    end
+
+    withproject(cmd, glob, "show status")
+end
+
+@doc Docs.doc(status)
+@cast st(pkg=""; diff::Bool=false, glob::Bool=false) = status(pkg; diff=diff, glob=glob)
+
+"""
+Update the current manifest with potential changes to the dependency graph from
+packages that are tracking a path.
+
+# Flags
+- `-g, --glob`: enable to resolve in global shared environment
+"""
+@cast function resolve(; glob::Bool=false)
+    withproject("Pkg.resolve()", glob, "resolve dependencies")
+end
+
+"""
+Remove a package from the current project. If the mode of pkg is PKGMODE_MANIFEST also
+remove it from the manifest including all recursive dependencies of pkg.
+
+# Arguments
+
+- `pkg`: package name to remove.
+
+# Flags
+
+- `-g, --glob`: enable to remove package in global shared environment
+"""
+@cast function rm(pkg; glob::Bool=false)
+    withproject("Pkg.rm($pkg)", glob, "rm package")
 end
 
 # @cast function register()
