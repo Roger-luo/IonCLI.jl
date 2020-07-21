@@ -1,2 +1,2 @@
 using Comonicon, IonCLI
-Comonicon.install(IonCLI, "ion"; compile=:min)
+Comonicon.install(IonCLI, "ion"; compile=:min, sysimg=true)
