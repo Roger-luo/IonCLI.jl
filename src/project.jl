@@ -258,5 +258,55 @@ remove it from the manifest including all recursive dependencies of pkg.
     withproject("Pkg.rm($pkg)", glob, "rm package")
 end
 
+"""
+Undoes the latest change to the active project. Only states in the current session are
+stored, up to a maximum of 50 states.
+
+# Flags
+
+- `-g, --glob`: enable to execute in global shared environment
+"""
+@cast undo(; glob::Bool=false) = withproject("Pkg.undo()", glob, "undo")
+
+"""
+Redoes the changes from the latest undo.
+
+# Flags
+
+- `-g, --glob`: enable to execute in global shared environment
+"""
+@cast redo(; glob::Bool=false) = withproject("Pkg.redo()", glob, "redo")
+
+"""
+If a Manifest.toml file exists in the active project, download all the packages
+declared in that manifest. Otherwise, resolve a set of feasible packages from the
+Project.toml files and install them. If no Project.toml exist
+in the current active project, create one with all the dependencies in the manifest
+and instantiate the resulting project.
+
+# Flags
+
+- `-v, --verbose`: prints the build output to stdout/stderr instead of redirecting to the build.log file.
+"""
+@cast function instantiate(;verbose::Bool=false)
+    withproject("Pkg.instantiate(;verbose=$verbose)", false, "instantiate")
+end
+
+@doc Docs.doc(instantiate)
+@cast inst(;verbose::Bool=false) = instantiate(;verbose=verbose)
+
+"""
+If pkg is pinned, remove the pin. If pkg is tracking a path, e.g. after Pkg.develop,
+go back to tracking registered versions.
+
+# Flags
+
+- `-g, --glob`: enable to execute in global shared environment
+
+"""
+@cast function free(pkg; glob::Bool=false)
+    withproject("Pkg.free($pkg)", glob, "free $pkg")
+end
+
 # @cast function register()
 # end
