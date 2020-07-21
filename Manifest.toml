@@ -5,7 +5,7 @@ uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 
 [[Comonicon]]
 deps = ["ExprTools", "Libdl", "Markdown", "PackageCompiler", "Pkg", "Test"]
-git-tree-sha1 = "419a6039e36f966e5f1d0d5b36dac5904e093366"
+git-tree-sha1 = "4fda3f589cbb6a58b0e40140b12db6739c886f45"
 repo-rev = "master"
 repo-url = "https://github.com/Roger-luo/Comonicon.jl.git"
 uuid = "863f3e99-da2a-4334-8734-de3dacbe5542"
