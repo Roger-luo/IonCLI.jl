@@ -14,7 +14,4 @@ include("utils.jl")
 The Ion manager.
 """
 
-include("precompile.jl")
-_precompile_()
-
 end
