@@ -159,9 +159,6 @@ Update a package. If no posistional argument is given, update all packages in cu
     withproject(cmd, glob, "update dependencies")
 end
 
-@doc Docs.doc(update)
-@cast up(pkg="") = update(pkg)
-
 """
 build package/project/environment
 
@@ -228,9 +225,6 @@ test package/project
     withproject(cmd, glob, "show status")
 end
 
-@doc Docs.doc(status)
-@cast st(pkg=""; diff::Bool=false, glob::Bool=false) = status(pkg; diff=diff, glob=glob)
-
 """
 Update the current manifest with potential changes to the dependency graph from
 packages that are tracking a path.
@@ -291,9 +285,6 @@ and instantiate the resulting project.
 @cast function instantiate(;verbose::Bool=false)
     withproject("Pkg.instantiate(;verbose=$verbose)", false, "instantiate")
 end
-
-@doc Docs.doc(instantiate)
-@cast inst(;verbose::Bool=false) = instantiate(;verbose=verbose)
 
 """
 If pkg is pinned, remove the pin. If pkg is tracking a path, e.g. after Pkg.develop,
