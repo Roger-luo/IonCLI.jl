@@ -59,13 +59,16 @@ function commit_toml(project::Project; push::Bool=false)
     run(`$git commit -m"bump version to $version_number"`)
 
     if push
-        run(`$git push origin master`)
+        run(`$git push origin $(project.branch)`)
     end
 end
 
-function reset_last_commit(project::Project)
+function reset_last_commit(project::Project; push=false)
     git = project.git
     run(`$git revert --no-edit HEAD`)
+    if push
+        run(`$git push origin $(project.branch)`)
+    end
 end
 
 function checkout(f, p::Project)
@@ -84,7 +87,7 @@ function checkout(f, p::Project)
 end
 
 """
-release a package and tag a version
+release a package.
 
 # Arguments
 
@@ -111,7 +114,7 @@ release a package and tag a version
         try
             register(registry, project)
         catch e
-            reset_last_commit(project)
+            reset_last_commit(project; push=true)
             rethrow(e)
         end
     end
