@@ -2,15 +2,25 @@ module IonCLI
 
 using Comonicon
 using PkgTemplates
-using LibGit2
+using LocalRegistry
+using RegistryTools
+using GitHub
+using OrderedCollections
 using Pkg
 
+using RegistryTools: gitcmd
+
+# Julia Pkg commands
 include("project.jl")
 include("registry.jl")
+
+# extra Ion commands
+include("plugins/create.jl")
+include("plugins/release.jl")
 include("utils.jl")
 
 
-@command_main name="ion" version="0.1.0" doc="""
+@command_main name="ion" doc="""
 The Ion manager.
 """
 

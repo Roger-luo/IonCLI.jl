@@ -1,50 +1,4 @@
-function project_path(path)
-    if !isabspath(path)
-        return joinpath(pwd(), path)
-    else
-        return path
-    end
-end
-
-"""
-create a project or package.
-
-# Arguments
-
-- `path`: path of the project you want to create
-
-# Flags
-
-- `-i, --interactive`: enable to start interactive configuration interface.
-"""
-@cast function create(path; interactive::Bool=false)
-    fullpath = project_path(path)
-
-    if ispath(fullpath)
-        error("$path exists, remove it or use a new path")
-    end
-
-    if interactive
-        t = Template(;dir=dirname(fullpath), interactive=true)
-        t(basename(path))
-    end
-
-    # TODO: use .ionrc to save user configuration
-    # and reuse it next time
-    # TODO: scan username in git config
-    t = Template(;dir=dirname(fullpath))
-    t(basename(path))
-    return
-end
-
-function default_clone_name(url)
-    name, _ = splitext(basename(url)) # rm .git
-    _name, ext = splitext(name)
-    if ext == ".jl" # preserve other extension
-        name = _name
-    end
-    return name
-end
+# This file only forward to Pkg's command but under --project by default
 
 function withproject(command, glob, action_msg)
     script = "using Pkg;"
@@ -66,19 +20,6 @@ function withproject(command, glob, action_msg)
     return
 end
 
-"""
-clone a package repo to a local directory.
-
-# Arguments
-
-- `url`: a remote or local url of the git repository.
-- `to` : a local position, default to be the repository name (without .jl)
-
-"""
-@cast function clone(url, to=default_clone_name(url); credential="")
-    LibGit2.clone(url, to)
-    return
-end
 
 """
 add package/project to the closest project.
