@@ -4,7 +4,7 @@ function withproject(command, glob, action_msg)
     script = "using Pkg;"
     if !glob
         msg = "cannot $action_msg in global environment, use -g, --glob to $action_msg to global environment"
-        script *= "(dirname(dirname(dirname(Pkg.project().path))) in DEPOT_PATH) && error(\"$msg\");"
+        script *= "(dirname(dirname(Pkg.project().path)) == joinpath(DEPOT_PATH[1], \"environments\")) && error(\"$msg\");"
     end
 
     script *= command

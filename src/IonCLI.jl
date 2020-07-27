@@ -20,8 +20,6 @@ include("plugins/release.jl")
 include("utils.jl")
 
 
-@command_main name="ion" doc="""
-The Ion manager.
-"""
+@main name="ion" doc="The Ion manager."
 
 end

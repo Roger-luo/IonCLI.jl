@@ -8,8 +8,11 @@ version = "0.2.0"
 [[Base64]]
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 
+[[CRC32c]]
+uuid = "8bf52ea8-c179-5cab-976a-9e18b702a9bc"
+
 [[Comonicon]]
-deps = ["ExprTools", "Libdl", "Markdown", "PackageCompiler", "Pkg", "Test"]
+deps = ["CRC32c", "ExprTools", "Libdl", "Markdown", "MatchCore", "PackageCompiler", "Pkg", "Test"]
 path = "/Users/roger/.julia/dev/Comonicon"
 uuid = "863f3e99-da2a-4334-8734-de3dacbe5542"
 version = "0.1.0"
@@ -93,6 +96,11 @@ uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
 [[Markdown]]
 deps = ["Base64"]
 uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
+
+[[MatchCore]]
+git-tree-sha1 = "c4b9f2f81cb7dbe22540df3a084de380f3cef6c4"
+uuid = "5dd3f0b1-72a9-48ad-ae6e-79f673da005f"
+version = "0.1.0"
 
 [[MbedTLS]]
 deps = ["Dates", "MbedTLS_jll", "Random", "Sockets"]

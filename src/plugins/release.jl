@@ -186,7 +186,11 @@ function github_repo(git, remote="origin")
     github_https = "https://github.com/"
     github_ssh = "git@github.com:"
     if startswith(url, github_https)
-        return url[length(github_https)+1:end]
+        if endswith(url, ".git")
+            return url[length(github_https)+1:end-4]
+        else
+            return url[length(github_https)+1:end]
+        end
     elseif startswith(url, github_ssh)
         return url[length(github_ssh)+1:end-4]
     else
