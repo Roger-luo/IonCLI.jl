@@ -16,13 +16,13 @@ jobs:
               asset_name: ion-1.4.2-linux-x86_64.tar.gz
             - os: ubuntu-latest
               julia-version: '1.5.0-rc1'
-              asset_name: ion-1.5.0-rc1-linux-x86_64.tar.gz
+              asset_name: ion-1.5.0-rc1.0-linux-x86_64.tar.gz
             - os: macOS-latest
               julia-version: '1.4.2'
               asset_name: ion-1.4.2-darwin-x86_64.tar.gz
             - os: macOS-latest
               julia-version: '1.5.0-rc1'
-              asset_name: ion-1.5.0-rc1-darwin-x86_64.tar.gz
+              asset_name: ion-1.5.0-rc1.0-darwin-x86_64.tar.gz
 
     steps:
     - name: Checkout code
@@ -35,23 +35,11 @@ jobs:
     - run: julia --project -e "using Pkg; Pkg.status()"
     - run: |
         julia --project deps/build.jl sysimg
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ./deps/${{ matrix.asset_name }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ./deps/${{ matrix.asset_name }}
         asset_name: ${{ matrix.asset_name }}
-        asset_content_type: application/gzip
+        tag: ${{ github.ref }}
+        overwrite: true
