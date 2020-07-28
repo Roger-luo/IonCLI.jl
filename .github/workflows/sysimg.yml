@@ -7,7 +7,11 @@ on:
 jobs:
   build:
     name: Upload Release Asset
-    runs-on: macos-latest
+    runs-on: {{ matrix.os }}
+    strategy:
+        matrix:
+          julia-version: ['1.4.2']
+          os: [ubuntu-latest, windows-latest, macOS-latest]
     steps:
     - name: Checkout code
       uses: actions/checkout@v1
@@ -16,10 +20,9 @@ jobs:
       with:
         version: 1.4.2
     - run: julia --project -e "using Pkg; Pkg.instantiate()"
+    - run: julia --project -e "using Pkg; Pkg.status()"
     - run: |
         julia --project deps/build.jl sysimg
-    - run: |
-        (cd deps && tar -czvf ion-0.2.0-Darwin-x86-64.tar.gz lib)
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -37,6 +40,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ./deps/ion-0.2.0-Darwin-x86-64.tar.gz
+        asset_path: ./deps/ion-0.2.0-Darwin-x86_64.tar.gz
         asset_name: ion-0.2.0-Darwin-x86-64.tar.gz
         asset_content_type: application/gzip
