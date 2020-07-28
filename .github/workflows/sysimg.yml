@@ -20,12 +20,10 @@ jobs:
       uses: julia-actions/setup-julia@v1
       with:
         version: ${{ matrix.julia-version }}
-    # - run: julia --project -e "using Pkg; Pkg.instantiate()"
-    # - run: julia --project -e "using Pkg; Pkg.status()"
+    - run: julia --project -e "using Pkg; Pkg.instantiate()"
+    - run: julia --project -e "using Pkg; Pkg.status()"
     - run: |
-        (cd deps && tar -czvf ${{ matrix.julia-version }}-${{ matrix.os }}.tar.gz build.jl)
-    # - run: |
-    #     julia --project deps/build.jl sysimg
+        julia --project deps/build.jl sysimg
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
