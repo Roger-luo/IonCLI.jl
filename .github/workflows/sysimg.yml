@@ -7,22 +7,11 @@ on:
 jobs:
   build:
     name: Upload Release Asset
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        include:
-            - os: ubuntu-latest
-              julia-version: '1.4.2'
-              asset_name: ion-1.4.2-linux-x86_64.tar.gz
-            - os: ubuntu-latest
-              julia-version: '1.5.0-rc1'
-              asset_name: ion-1.5.0-rc1.0-linux-x86_64.tar.gz
-            - os: macOS-latest
-              julia-version: '1.4.2'
-              asset_name: ion-1.4.2-darwin-x86_64.tar.gz
-            - os: macOS-latest
-              julia-version: '1.5.0-rc1'
-              asset_name: ion-1.5.0-rc1.0-darwin-x86_64.tar.gz
+        julia-version: ['1.4.2', '1.5.0-rc1']
+        os: [ubuntu-latest, macOS-latest]
 
     steps:
     - name: Checkout code
@@ -31,15 +20,17 @@ jobs:
       uses: julia-actions/setup-julia@v1
       with:
         version: ${{ matrix.julia-version }}
-    - run: julia --project -e "using Pkg; Pkg.instantiate()"
-    - run: julia --project -e "using Pkg; Pkg.status()"
+    # - run: julia --project -e "using Pkg; Pkg.instantiate()"
+    # - run: julia --project -e "using Pkg; Pkg.status()"
     - run: |
-        julia --project deps/build.jl sysimg
+        tar -czvf ${{ matrix.julia-version }}-${{ matrix.os }}.tar.gz src
+    # - run: |
+    #     julia --project deps/build.jl sysimg
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ./deps/${{ matrix.asset_name }}
-        asset_name: ${{ matrix.asset_name }}
+        file: ./deps/*.tar.gz
         tag: ${{ github.ref }}
         overwrite: true
+        file_glob: true
