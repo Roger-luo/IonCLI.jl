@@ -10,12 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        julia-version: ['1.4.2', '1.5.0-rc1']
         include:
             - os: ubuntu-latest
-              asset_name: ion-${{ matrix.julia-version }}-linux-x86_64.tar.gz
+              julia-version: '1.4.2'
+              asset_name: ion-1.4.2-linux-x86_64.tar.gz
+            - os: ubuntu-latest
+              julia-version: '1.5.0-rc1'
+              asset_name: ion-1.5.0-rc1-linux-x86_64.tar.gz
             - os: macOS-latest
-              asset_name: ion-${{ matrix.julia-version }}-darwin-x86_64.tar.gz
+              julia-version: '1.4.2'
+              asset_name: ion-1.4.2-darwin-x86_64.tar.gz
+            - os: macOS-latest
+              julia-version: '1.5.0-rc1'
+              asset_name: ion-1.5.0-rc1-darwin-x86_64.tar.gz
 
     steps:
     - name: Checkout code
