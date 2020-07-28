@@ -6,14 +6,18 @@ function download_sysimg()
         Sys.islinux() ? "linux" :
         error("unsupported OS")
     tarball_name = "ion-$(VERSION)-$os-$(Sys.ARCH).tar.gz"
-    url = "https://github.com/Roger-luo/IonCLI.jl/releases/download/v0.1.4/$tarball_name"
+    url = "https://github.com/Roger-luo/IonCLI.jl/releases/download/v$(Comonicon.get_version(IonCLI))/$tarball_name"
 
     tarball = joinpath(Comonicon.PATH.project(IonCLI, "deps", tarball_name))
     PlatformEngines.probe_platform_engines!()
     try
         download(url, tarball)
         unpack(tarball, Comonicon.PATH.project(IonCLI, "deps"))
-    finally
+    catch e
+        @warn e
+    end
+
+    if ispath(tarball)
         rm(tarball)
     end
 end
