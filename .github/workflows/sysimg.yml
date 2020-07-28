@@ -5,13 +5,12 @@ on:
         - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
   
 jobs:
-  build:
+  build-linux:
     name: Upload Release Asset
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        julia-version: ['1.4.2']
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        julia-version: ['1.4.2', '1.5.0-rc1']
 
     steps:
     - name: Checkout code
@@ -19,7 +18,7 @@ jobs:
     - name: Build project # This would actually build your project, using zip for an example artifact
       uses: julia-actions/setup-julia@v1
       with:
-        version: 1.4.2
+        version: ${{ matrix.julia-version }}
     - run: julia --project -e "using Pkg; Pkg.instantiate()"
     - run: julia --project -e "using Pkg; Pkg.status()"
     - run: |
@@ -41,6 +40,46 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ./deps/ion-0.2.0-Darwin-x86_64.tar.gz
-        asset_name: ion-0.2.0-Darwin-x86-64.tar.gz
+        asset_path: ./deps/ion-${{ matrix.julia-version }}-linux-x86_64.tar.gz
+        asset_name: ion-${{ matrix.julia-version }}-linux-x86_64.tar.gz
+        asset_content_type: application/gzip
+
+
+  build-macOS:
+    name: Upload Release Asset
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        julia-version: ['1.4.2', '1.5.0-rc1']
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v1
+    - name: Build project # This would actually build your project, using zip for an example artifact
+      uses: julia-actions/setup-julia@v1
+      with:
+        version: ${{ matrix.julia-version }}
+    - run: julia --project -e "using Pkg; Pkg.instantiate()"
+    - run: julia --project -e "using Pkg; Pkg.status()"
+    - run: |
+        julia --project deps/build.jl sysimg
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ./deps/ion-${{ matrix.julia-version }}-darwin-x86_64.tar.gz
+        asset_name: ion-${{ matrix.julia-version }}-darwin-x86_64.tar.gz
         asset_content_type: application/gzip
