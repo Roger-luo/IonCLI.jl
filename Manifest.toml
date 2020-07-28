@@ -13,11 +13,11 @@ uuid = "8bf52ea8-c179-5cab-976a-9e18b702a9bc"
 
 [[Comonicon]]
 deps = ["CRC32c", "ExprTools", "Libdl", "Markdown", "MatchCore", "PackageCompiler", "Pkg", "Test"]
-git-tree-sha1 = "1873b00e7816c6925035e15b5854dda3d8fdd752"
+git-tree-sha1 = "7455c2a76d50607e460b266d7d0ab28b76ba42d0"
 repo-rev = "master"
 repo-url = "https://github.com/Roger-luo/Comonicon.jl.git"
 uuid = "863f3e99-da2a-4334-8734-de3dacbe5542"
-version = "0.2.2"
+version = "0.2.3"
 
 [[DataAPI]]
 git-tree-sha1 = "176e23402d80e7743fc26c19c681bfb11246af32"
