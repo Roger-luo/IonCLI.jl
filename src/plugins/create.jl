@@ -15,6 +15,20 @@ function create_template(::PDTN"default", dir, user)
     )
 end
 
+function create_template(::PDTN"test", dir, user)
+    return Template(;
+        dir=dir,
+        user=user,
+        plugins=[
+            Git(;
+                ignore=String[],
+                name="Roger-luo",
+                email="rogerluo.rl18@gmail.com",
+            )
+        ]
+    )
+end
+
 create_template(::PDTN{template}, dir, user) where template = error("template $(template) not found")
 
 """

@@ -12,7 +12,7 @@ using Pkg
 
 dummy_project = PATH.project(IonCLI, "test", "dummy")
 rm(dummy_project, recursive=true, force=true)
-IonCLI.command_main(["create", dummy_project, "--user=Roger-luo"])
+IonCLI.command_main(["create", dummy_project, "--user=Roger-luo", "--template=test"])
 project = IonCLI.Project(dummy_project)
 @test project.pkg.version == v"0.1.0"
 @test project.path == dummy_project
