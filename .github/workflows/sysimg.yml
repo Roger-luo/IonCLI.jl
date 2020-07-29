@@ -1,3 +1,4 @@
+name: SysImage
 on:
     push:
       # Sequence of patterns matched against refs/tags
