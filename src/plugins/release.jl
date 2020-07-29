@@ -15,6 +15,15 @@
 #     end
 # end
 
+struct PRN{name} end
+
+PRN(name::String) = PRN{Symbol(name)}()
+
+macro PRN_str(name::String)
+    return PRN{Symbol(name)}
+end
+
+Base.show(io::IO, ::PRN{registry}) where {registry} = print(io, "Pacakge Registry Name Type ", string(registry))
 
 Base.@kwdef struct VersionTokens
     major::String = "major"
@@ -28,7 +37,10 @@ Base.show(io::IO, vt::VersionTokens) = print(io, "(", vt.major, ", ", vt.minor, 
 Base.in(version::String, tokens::VersionTokens) = (version == tokens.major) ||
     (version == tokens.minor) || (version == tokens.patch)
 
-is_version_number(version) = occursin(r"[0-9]+.[0-9]+.[0-9]+", version)
+function is_version_number(version)
+    occursin(r"[0-9]+.[0-9]+.[0-9]+", version) ||
+        occursin(r"v[0-9]+.[0-9]+.[0-9]+", version)
+end
 
 struct Project
     path::String
@@ -91,7 +103,7 @@ release a package.
 
 # Arguments
 
-- `version`: version number you want to release, can be a specific version or either of $(VERSION_TOKENS)
+- `version`: version number you want to release, can be a specific version, "current" or either of $(VERSION_TOKENS)
 - `path`: path to the project you want to release, default is the current working directory.
 
 # Options
@@ -109,8 +121,15 @@ release a package.
     # so the JuliaRegistrator can find
     # it later
     checkout(project) do
-        update_version!(project, version)
-        commit_toml(project; push=true)
+        if LocalRegistry.is_dirty(project.path, Dict())
+            error("package repository is dirty, please commit or stash changes.")
+        end
+
+        if version != "current"
+            update_version!(project, version)
+            commit_toml(project; push=true)
+        end
+
         try
             register(registry, project)
         catch e
@@ -125,16 +144,14 @@ function register(registry::String, project::Project)
     if isempty(registry) # registered package
         path = LocalRegistry.find_registry_path(nothing, project.pkg)
         if basename(path) == "General"
-            return register_general(project)
+            return register(PRN("General"), project)
         end
     end
 
-    if registry == "General"
-        return register_general(project)
-    end
+    register(PRN(registry), project)
 end
 
-function register_general(project::Project)
+function register(::PRN"General", project::Project)
     github_token = read_auth()
     auth = GitHub.authenticate(github_token)
     HEAD = read_head(project.git)
@@ -150,6 +167,10 @@ function register_general(project::Project)
     comment = GitHub.create_comment(repo, HEAD, :commit; params=comment_json, auth=auth)
     println(comment)
     return
+end
+
+function register(registry::PRN, project::Project)
+    error("register workflow is not defined for $registry")
 end
 
 function registrator_msg(project)
@@ -221,9 +242,9 @@ end
 
 function bump_version(version::VersionNumber, token::String)
     if token == VERSION_TOKENS.major
-        return VersionNumber(version.major+1, version.minor, version.patch)
+        return VersionNumber(version.major+1, 0, 0)
     elseif token == VERSION_TOKENS.minor
-        return VersionNumber(version.major, version.minor+1, version.patch)
+        return VersionNumber(version.major, version.minor+1, 0)
     elseif token == VERSION_TOKENS.patch
         return VersionNumber(version.major, version.minor, version.patch+1)
     else
