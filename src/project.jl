@@ -160,7 +160,7 @@ test package/project
     if isempty(pkg)
         cmd = "Pkg.status(;diff=$diff)"
     else
-        cmd = "Pkg.status($pkg; diff=$diff)"
+        cmd = "Pkg.status(\"$pkg\"; diff=$diff)"
     end
 
     withproject(cmd, glob, "show status")
@@ -190,7 +190,7 @@ remove it from the manifest including all recursive dependencies of pkg.
 - `-g, --glob`: enable to remove package in global shared environment
 """
 @cast function rm(pkg; glob::Bool=false)
-    withproject("Pkg.rm($pkg)", glob, "rm package")
+    withproject("Pkg.rm(\"$pkg\")", glob, "rm package")
 end
 
 """
@@ -237,7 +237,7 @@ go back to tracking registered versions.
 
 """
 @cast function free(pkg; glob::Bool=false)
-    withproject("Pkg.free($pkg)", glob, "free $pkg")
+    withproject("Pkg.free(\"$pkg\")", glob, "free $pkg")
 end
 
 # @cast function register()
