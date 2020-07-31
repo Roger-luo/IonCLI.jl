@@ -1,6 +1,6 @@
 # This file only forward to Pkg's command but under --project by default
 
-function withproject(command, glob, action_msg)
+function withproject(command, glob, action_msg, compile_min=true)
     script = "using Pkg;"
     if !glob
         msg = "cannot $action_msg in global environment, use -g, --glob to $action_msg to global environment"
@@ -8,13 +8,20 @@ function withproject(command, glob, action_msg)
     end
 
     script *= command
-    cmd = Cmd(["-e", script])
+
+    exename = joinpath(Sys.BINDIR::String, Base.julia_exename())
+
+    options = []
+    if compile_min
+        push!(options, "--compile=min")
+    end
+    push!(options, "-g1", "--color=yes", "--startup-file=no", "-e", script)
 
     if glob
-        run(`$(Base.julia_cmd()) $cmd`)
+        run(Cmd([exename, options...]))
     else
         withenv("JULIA_PROJECT"=>"@.") do
-            run(`$(Base.julia_cmd()) $cmd`)
+            run(Cmd([exename, options...]))
         end
     end
     return
@@ -30,7 +37,7 @@ add package/project to the closest project.
 
 # Options
 
-- `-v, --version <version number>`: package version, default is the latest available version, or master branch for git repos.
+- `-v, --version <version number>`: package version. default is the latest available version, or master branch for git repos.
 - `--rev <branch/commit>`: git revision, can be branch name or commit hash.
 - `-s, --subdir <subdir>`: subdir of the package.
 
@@ -56,7 +63,7 @@ add package/project to the closest project.
     withproject(
         "Pkg.add(;$kw);",
         glob,
-        "install a package"
+        "install a package",
     )
 end
 
@@ -119,7 +126,7 @@ build package/project/environment
         cmd = "pkg\"build $pkg\""
     end
 
-    withproject(cmd, glob, "build")
+    withproject(cmd, glob, "build", false)
 end
 
 """
@@ -140,12 +147,12 @@ test package/project
         cmd = "Pkg.test(\"$pkg\")"
     end
 
-    withproject(cmd, glob, "test")
+    withproject(cmd, glob, "test", false)
 end
 
 
 """
-test package/project
+show current environment status
 
 # Arguments
 
@@ -167,7 +174,8 @@ test package/project
 end
 
 """
-Update the current manifest with potential changes to the dependency graph from
+Update the current manifest. It will update manifest
+with potential changes to the dependency graph from
 packages that are tracking a path.
 
 # Flags

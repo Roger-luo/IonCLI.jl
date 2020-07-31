@@ -103,13 +103,13 @@ release a package.
 
 # Arguments
 
-- `version`: version number you want to release, can be a specific version, "current" or either of $(VERSION_TOKENS)
+- `version`: version number you want to release. Can be a specific version, "current" or either of $(VERSION_TOKENS)
 - `path`: path to the project you want to release, default is the current working directory.
 
 # Options
 
-- `-r,--registry <registry name>`: registry you want to register the package,
-    if the package has not been registered, ion will try to register
+- `-r,--registry <registry name>`: registry you want to register the package.
+    If the package has not been registered, ion will try to register
     the package in the General registry. Or the user needs to specify
     the registry to register using this option.
 

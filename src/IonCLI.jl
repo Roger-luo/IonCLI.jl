@@ -10,6 +10,8 @@ using Pkg
 
 using RegistryTools: gitcmd
 
+Comonicon.set_brief_length!(120)
+
 # Julia Pkg commands
 include("project.jl")
 include("registry.jl")
