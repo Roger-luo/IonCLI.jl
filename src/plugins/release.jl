@@ -48,14 +48,15 @@ struct Project
     pkg::Pkg.Types.Project
     git::Cmd
     branch::String
+    quiet::Bool
 end
 
-function Project(path::String=pwd(); gitconfig=Dict(), branch="master")
+function Project(path::String=pwd(); gitconfig=Dict(), branch="master", quiet=false)
     toml = Base.current_project(path)
     path = dirname(toml)
     pkg = Pkg.Types.read_project(toml)
     git = RegistryTools.gitcmd(path, gitconfig)
-    return Project(path, toml, pkg, git, branch)
+    return Project(path, toml, pkg, git, branch, quiet)
 end
 
 Base.show(io::IO, p::Project) = print(io, "Project(", p.path, ")")
@@ -114,8 +115,12 @@ release a package.
     the registry to register using this option.
 
 - `-b, --branch <branch name>`: branch you want to register, use master branch by default.
+
+# Flags
+
+- `-q,--quiet`: do not promote anything.
 """
-@cast function release(version::String, path::String=pwd(); registry="", branch="master")
+@cast function release(version::String, path::String=pwd(); registry="", branch="master", quiet::Bool=false)
     project = Project(path; branch=branch)
     # new version needs to be pushed
     # so the JuliaRegistrator can find
@@ -226,6 +231,14 @@ function update_version!(project::Project, version)
         version_number = bump_version(project, version)
     else
         error("invalid version $version")
+    end
+
+    if !project.quiet
+        println("current version: ", project.pkg.version)
+        println("updated version: ", version_number)
+        if !prompt("do you want to update Project.toml?")
+            exit(0)
+        end
     end
 
     write_version(project, version_number)

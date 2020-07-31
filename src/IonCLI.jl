@@ -1,6 +1,7 @@
 module IonCLI
 
 using Comonicon
+using Comonicon.Tools
 using PkgTemplates
 using LocalRegistry
 using RegistryTools
