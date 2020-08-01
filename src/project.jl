@@ -33,35 +33,18 @@ add package/project to the closest project.
 
 # Arguments
 
-- `url`: package name or url to add.
-
-# Options
-
-- `-v, --version <version number>`: package version. default is the latest available version, or master branch for git repos.
-- `--rev <branch/commit>`: git revision, can be branch name or commit hash.
-- `-s, --subdir <subdir>`: subdir of the package.
+- `urls`: package names or urls to add.
 
 # Flags
 
 - `-g, --glob`: add package to global shared environment.
 
 """
-@cast function add(url; version::String="", rev::String="", subdir::String="", glob::Bool=false)
-    kwargs = []
-    if isurl(url)
-        push!(kwargs, "url=\"$url\"")
-    else
-        push!(kwargs, "name=\"$url\"")
-    end
-
-    !isempty(version) && push!(kwargs, "version=\"$version\"")
-    !isempty(rev) && push!(kwargs, "rev=\"$rev\"")
-    !isempty(subdir) && push!(kwargs, "subdir=\"$subdir\"")
-
-    kw = join(kwargs, ", ")
+@cast function add(urls...; glob::Bool=false)
+    packages = join(urls, " ")
 
     withproject(
-        "Pkg.add(;$kw);",
+        "pkg\"add $packages\"",
         glob,
         "install a package",
     )
@@ -197,8 +180,8 @@ remove it from the manifest including all recursive dependencies of pkg.
 
 - `-g, --glob`: enable to remove package in global shared environment
 """
-@cast function rm(pkg; glob::Bool=false)
-    withproject("Pkg.rm(\"$pkg\")", glob, "rm package")
+@cast function rm(pkgs...; glob::Bool=false)
+    withproject("pkg\"rm $(join(pkgs, " "))\"", glob, "rm package")
 end
 
 """
