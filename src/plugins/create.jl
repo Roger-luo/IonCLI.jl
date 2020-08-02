@@ -61,6 +61,7 @@ create a project or package.
     if interactive
         t = Template(;dir=dirname(fullpath), user=user, interactive=true)
         t(basename(path))
+        return
     end
 
     # TODO: use .ionrc to save user configuration
