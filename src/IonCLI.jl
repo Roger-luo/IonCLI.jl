@@ -20,6 +20,7 @@ include("registry.jl")
 # extra Ion commands
 include("plugins/create.jl")
 include("plugins/release.jl")
+include("plugins/search.jl")
 include("utils.jl")
 
 
