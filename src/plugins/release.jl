@@ -189,14 +189,16 @@ function registrator_msg(project)
 end
 
 function read_auth()
-    if haskey(ENV, "GITHUB_AUTH")
-        return ENV["GITHUB_AUTH"]
-    else
-        buf = Base.getpass("GitHub Access Token (https://github.com/settings/tokens)")
-        auth = read(buf, String)
-        Base.shred!(buf)
-        return auth
+    for key in ENV_TOKEN_NAMES
+        if haskey(ENV, key)
+            return ENV[key]
+        end
     end
+
+    buf = Base.getpass("GitHub Access Token (https://github.com/settings/tokens)")
+    auth = read(buf, String)
+    Base.shred!(buf)
+    return auth
 end
 
 function read_head(git, branch="master")

@@ -25,6 +25,8 @@ search a package.
                 auth = GitHub.authenticate(token)
             elseif haskey(ENV, "GITHUB_AUTH")
                 auth = GitHub.authenticate(ENV["GITHUB_AUTH"])
+            elseif haskey(ENV, "GITHUB_TOKEN")
+                auth = GitHub.authenticate(ENV["GITHUB_TOKEN"])
             end
         end
 

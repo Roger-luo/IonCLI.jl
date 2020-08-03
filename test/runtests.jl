@@ -39,5 +39,4 @@ end
     @test first(IonCLI.search_fuzzy_package("Yao"))[3]["name"] == "Yao"
     @test IonCLI.search_exact_package("Yao")[end]["name"] == "Yao"
     @test IonCLI.search_exact_package("ASDWXCASDSAS") === nothing
-    IonCLI.search("Yao")
 end
