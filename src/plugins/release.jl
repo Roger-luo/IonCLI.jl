@@ -234,8 +234,19 @@ function update_version!(project::Project, version)
     end
 
     if !project.quiet
-        println("current version: ", project.pkg.version)
-        println("updated version: ", version_number)
+        latest_version = find_max_version(project.pkg.name)
+        
+        if latest_version === nothing
+            println("package not found in local registries")
+        else
+            println("latest registered version: ", latest_version)
+            if latest_version > version_number
+                @warn "input version is smaller than registered version"
+            end
+        end
+
+        println(" "^10, "current version: ", project.pkg.version)
+        println(" "^7, "version to release: ", version_number)
         if !prompt("do you want to update Project.toml?")
             exit(0)
         end

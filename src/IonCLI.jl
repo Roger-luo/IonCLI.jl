@@ -6,8 +6,10 @@ using PkgTemplates
 using LocalRegistry
 using RegistryTools
 using GitHub
+using StringDistances
 using OrderedCollections
 using Pkg
+using Pkg.TOML
 
 using RegistryTools: gitcmd
 
