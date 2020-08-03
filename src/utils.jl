@@ -19,3 +19,11 @@ false
 function isurl(str::AbstractString)
     return !occursin(windowsregex, str) && occursin(urlregex, str)
 end
+
+function isgithub(url::AbstractString)
+    if startswith(url, "http") && startswith(split(url, "//")[2], "github.com")
+        return true
+    else
+        return false
+    end
+end

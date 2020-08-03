@@ -189,14 +189,16 @@ function registrator_msg(project)
 end
 
 function read_auth()
-    if haskey(ENV, "GITHUB_AUTH")
-        return ENV["GITHUB_AUTH"]
-    else
-        buf = Base.getpass("GitHub Access Token (https://github.com/settings/tokens)")
-        auth = read(buf, String)
-        Base.shred!(buf)
-        return auth
+    for key in ENV_TOKEN_NAMES
+        if haskey(ENV, key)
+            return ENV[key]
+        end
     end
+
+    buf = Base.getpass("GitHub Access Token (https://github.com/settings/tokens)")
+    auth = read(buf, String)
+    Base.shred!(buf)
+    return auth
 end
 
 function read_head(git, branch="master")
@@ -234,8 +236,19 @@ function update_version!(project::Project, version)
     end
 
     if !project.quiet
-        println("current version: ", project.pkg.version)
-        println("updated version: ", version_number)
+        latest_version = find_max_version(project.pkg.name)
+        
+        if latest_version === nothing
+            println("package not found in local registries")
+        else
+            println("latest registered version: ", latest_version)
+            if latest_version > version_number
+                @warn "input version is smaller than registered version"
+            end
+        end
+
+        println(" "^10, "current version: ", project.pkg.version)
+        println(" "^7, "version to release: ", version_number)
         if !prompt("do you want to update Project.toml?")
             exit(0)
         end

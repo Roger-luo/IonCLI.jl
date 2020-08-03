@@ -40,8 +40,8 @@ add package/project to the closest project.
 - `-g, --glob`: add package to global shared environment.
 
 """
-@cast function add(urls...; glob::Bool=false)
-    packages = join(urls, " ")
+@cast function add(url, urls...; glob::Bool=false)
+    packages = join([url, urls...], " ")
 
     withproject(
         "pkg\"add $packages\"",
@@ -180,8 +180,8 @@ remove it from the manifest including all recursive dependencies of pkg.
 
 - `-g, --glob`: enable to remove package in global shared environment
 """
-@cast function rm(pkgs...; glob::Bool=false)
-    withproject("pkg\"rm $(join(pkgs, " "))\"", glob, "rm package")
+@cast function rm(pkg, pkgs...; glob::Bool=false)
+    withproject("pkg\"rm $(join([pkg, pkgs...], " "))\"", glob, "rm package")
 end
 
 """
