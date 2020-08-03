@@ -33,6 +33,18 @@ pkg> add IonCLI#master
 
 add `~/.julia/bin` to your `PATH`, and type `ion -h` to check help message.
 
+Or you can use [Comonicon](https://github.com/Roger-luo/Comonicon.jl) to install paths automatically
+
+```julia
+using Comonicon.BuildTools; BuildTools.install_env_path()
+```
+
+to install the `PATH` and auto-completion `FPATH` automatically. If you don't have oh-my-zsh installed,
+to enable auto-commpletion you need to add `~/.julia/completions` to your `FPATH` and then add 
+`autoload -Uz compinit && compinit` to your `.zshrc`.
+
+If you fail to download the artifact, you can build the CLI locally via `IonCLI.comonicon_build()`.
+
 ## License
 
 MIT License
