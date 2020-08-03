@@ -19,6 +19,7 @@ search a package.
             length(pkginfo["name"])
         end
 
+        local auth
         if omit
             auth = nothing
         else
