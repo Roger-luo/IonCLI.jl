@@ -15,6 +15,15 @@ function create_template(::PDTN"default", dir, user)
     )
 end
 
+function create_template(::PDTN"command", dir, user)
+    return Template(;
+        dir=dir,
+        user=user,
+        plugins=[
+        ]
+    )
+end
+
 function create_template(::PDTN"test", dir, user)
     return Template(;
         dir=dir,
