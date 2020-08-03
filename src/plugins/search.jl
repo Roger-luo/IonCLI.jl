@@ -19,10 +19,8 @@ search a package.
             length(pkginfo["name"])
         end
 
-        local auth
-        if omit
-            auth = nothing
-        else
+        auth = nothing
+        if !omit
             if !isempty(token)
                 auth = GitHub.authenticate(token)
             elseif haskey(ENV, "GITHUB_AUTH")
