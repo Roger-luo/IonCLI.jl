@@ -8,38 +8,6 @@ end
 
 Base.show(io::IO, ::PDTN{template}) where {template} = print(io, "Pre-defined Template Name Type ", string(template))
 
-function create_template(::PDTN"default", dir, user)
-    return Template(;
-        dir=dir,
-        user=user,
-    )
-end
-
-function create_template(::PDTN"command", dir, user)
-    return Template(;
-        dir=dir,
-        user=user,
-        plugins=[
-        ]
-    )
-end
-
-function create_template(::PDTN"test", dir, user)
-    return Template(;
-        dir=dir,
-        user=user,
-        plugins=[
-            Git(;
-                ignore=String[],
-                name="Roger-luo",
-                email="rogerluo.rl18@gmail.com",
-            )
-        ]
-    )
-end
-
-create_template(::PDTN{template}, dir, user) where template = error("template $(template) not found")
-
 """
 create a project or package.
 
@@ -67,19 +35,13 @@ create a project or package.
         error("$path exists, remove it or use a new path")
     end
 
-    if interactive
-        t = Template(;dir=dirname(fullpath), user=user, interactive=true)
-        t(basename(path))
-        return
-    end
-
     # TODO: use .ionrc to save user configuration
     # and reuse it next time
-    if isempty(user)
+    if !interactive && isempty(user)
         error("user name is required, please either use --user <name> to specify it or create using -i, --interactive")
     end
 
-    t = create_template(PDTN(template), dirname(fullpath), user)
+    t = create_template(PDTN(template), dirname(fullpath), user, interactive)
     t(basename(fullpath))
     return
 end
