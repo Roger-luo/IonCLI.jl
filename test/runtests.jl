@@ -40,3 +40,35 @@ end
     @test IonCLI.search_exact_package("Yao")[end]["name"] == "Yao"
     @test IonCLI.search_exact_package("ASDWXCASDSAS") === nothing
 end
+
+@testset "template/comonicon" begin
+    test_comonicon = PATH.project(IonCLI, "test", "Foo")
+    rm(test_comonicon; recursive=true, force=true)
+    IonCLI.create(test_comonicon; user="Roger-luo", template="comonicon")
+    comonicon_toml = joinpath(test_comonicon, "Comonicon.toml")
+    @test isfile(comonicon_toml)
+    toml = Pkg.TOML.parsefile(comonicon_toml)
+    @test toml["name"] == "foo"
+    @test toml["install"]["optimize"] == 2
+    @test toml["install"]["quiet"] == false
+    @test toml["install"]["completion"] == true
+    @test isfile(joinpath(test_comonicon, "deps", "build.jl"))
+end
+
+@testset "template/comonicon-sysimg" begin
+    test_comonicon = PATH.project(IonCLI, "test", "Foo")
+    rm(test_comonicon; recursive=true, force=true)
+    IonCLI.create(test_comonicon; user="Roger-luo", template="comonicon-sysimg")
+    comonicon_toml = joinpath(test_comonicon, "Comonicon.toml")
+    @test isfile(comonicon_toml)
+    toml = Pkg.TOML.parsefile(comonicon_toml)
+    @test toml["name"] == "foo"
+    @test toml["sysimg"]["filter_stdlibs"] == true
+    @test toml["sysimg"]["cpu_target"] == "x86-64"
+    @test toml["sysimg"]["incremental"] == false
+    @test toml["sysimg"]["path"] == "deps/lib"
+
+    @test toml["download"]["repo"] == "Foo.jl"
+    @test toml["download"]["host"] == "github.com"
+    @test toml["download"]["user"] == "Roger-luo"
+end
