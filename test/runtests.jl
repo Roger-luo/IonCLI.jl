@@ -1,6 +1,7 @@
 using IonCLI
 using Comonicon.PATH
 using Test
+using PkgTemplates
 using Pkg
 
 @testset "create & release" begin
@@ -43,8 +44,24 @@ end
 
 @testset "template/comonicon" begin
     test_comonicon = PATH.project(IonCLI, "test", "Foo")
+    dir = dirname(test_comonicon)
     rm(test_comonicon; recursive=true, force=true)
-    IonCLI.create(test_comonicon; user="Roger-luo", template="comonicon")
+
+    t = Template(;
+            dir=dir,
+            user="me",
+            plugins=[
+                Readme(;
+                    file = IonCLI.PATH.templates("command", "README.md"),
+                    destination="README.md",
+                    inline_badges=false
+                ),
+                Git(;name="me", email="a@b.c"),
+                IonCLI.ComoniconFiles(),
+            ]
+        )
+
+    t(basename(test_comonicon))
     comonicon_toml = joinpath(test_comonicon, "Comonicon.toml")
     @test isfile(comonicon_toml)
     toml = Pkg.TOML.parsefile(comonicon_toml)
@@ -57,8 +74,25 @@ end
 
 @testset "template/comonicon-sysimg" begin
     test_comonicon = PATH.project(IonCLI, "test", "Foo")
+    dir = dirname(test_comonicon)
     rm(test_comonicon; recursive=true, force=true)
-    IonCLI.create(test_comonicon; user="Roger-luo", template="comonicon-sysimg")
+
+    t = Template(;
+        dir=dir,
+        user="me",
+        plugins=[
+            Readme(;
+                file = IonCLI.PATH.templates("command", "README.md"),
+                destination="README.md",
+                inline_badges=false
+            ),
+            Git(;name="me", email="a@b.c"),
+            IonCLI.ComoniconFiles(),
+            IonCLI.SystemImage(),
+        ]
+    )
+
+    t(basename(test_comonicon))
     comonicon_toml = joinpath(test_comonicon, "Comonicon.toml")
     @test isfile(comonicon_toml)
     toml = Pkg.TOML.parsefile(comonicon_toml)
@@ -70,5 +104,5 @@ end
 
     @test toml["download"]["repo"] == "Foo.jl"
     @test toml["download"]["host"] == "github.com"
-    @test toml["download"]["user"] == "Roger-luo"
+    @test toml["download"]["user"] == "me"
 end
