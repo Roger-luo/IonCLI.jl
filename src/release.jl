@@ -1,29 +1,22 @@
-# const REGISTRYS = Dict{String, Any}()
+"""
+    PRN{name}
 
-# struct RegistryIndex
-#     index::Dict{String, Any}
-# end
-
-# RegistryIndex() = RegistryIndex(Dict{String, Any}())
-# Base.setindex!(r::RegistryIndex, v, key::String) = r.index[key] = v
-
-# function Base.getindex(r::RegistryIndex, key::String)
-#     if haskey(r.index, key)
-#         return r.index[key]
-#     else
-#         error("no method found to register packages in $key")
-#     end
-# end
-
+Package Registry Name
+"""
 struct PRN{name} end
 
+"""
+    PRN(name::String)
+
+Create a `PRN` (Pacakge Registry Name) object.
+"""
 PRN(name::String) = PRN{Symbol(name)}()
 
 macro PRN_str(name::String)
     return PRN{Symbol(name)}
 end
 
-Base.show(io::IO, ::PRN{registry}) where {registry} = print(io, "Pacakge Registry Name Type ", string(registry))
+Base.show(io::IO, ::PRN{registry}) where {registry} = print(io, "Pacakge Registry ", string(registry))
 
 Base.@kwdef struct VersionTokens
     major::String = "major"
