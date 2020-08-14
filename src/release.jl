@@ -71,7 +71,8 @@ end
 
 function reset_last_commit(project::Project; push=false)
     git = project.git
-    run(`$git revert --no-edit HEAD`)
+    run(`$git revert --no-edit --no-commit HEAD`)
+    run(`$git commit -m "revert version bump due to an error occured in IonCLI"`)
     if push
         run(`$git push origin $(project.branch)`)
     end
