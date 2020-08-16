@@ -4,6 +4,10 @@
 
 A CLI package manager for Julia.
 
+**Disclaimer: It’s still at an early stage, even I have tested it myself in daily usage for a few weeks, I still expect it to have some glitches, and please file an issue to help improve it if you hit any.**
+
+For MacOS users, due to system image compilation issue, you will need to compile this package manually via `using IonCLI; IonCLI.comonicon_build()`.
+
 ## Installation
 
 <p>
