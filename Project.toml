@@ -1,7 +1,7 @@
 name = "IonCLI"
 uuid = "7a67c3bc-365d-4399-aa69-e9a17770ea1f"
 authors = ["Roger-luo <rogerluo.rl18@gmail.com> and contributors"]
-version = "0.4.6"
+version = "0.4.7"
 
 [deps]
 LocalRegistry = "89398ba2-070a-4b16-a995-9893c55d93cf"
