@@ -9,8 +9,8 @@ optimize=2
 
 [sysimg]
 path="deps/lib"
-incremental=true
-filter_stdlibs=false
+incremental=false
+filter_stdlibs=true
 cpu_target="x86-64"
 
 [download]
