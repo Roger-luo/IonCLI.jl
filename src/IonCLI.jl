@@ -52,6 +52,7 @@ include(joinpath("templates", "default.jl"))
 include(joinpath("templates", "command.jl"))
 include(joinpath("templates", "from_file.jl"))
 
+include("clone.jl")
 include("release.jl")
 include("search.jl")
 include("utils.jl")
