@@ -18,7 +18,8 @@ function withproject(command, glob, action_msg, compile_min=true)
     push!(options, "-g1", "--color=yes", "--startup-file=no", "-e", script)
 
     if glob
-        run(Cmd([exename, options...]))
+        GLOB_ENV = filter(x->x.first!="JULIA_PROJECT", ENV)
+        run(setenv(Cmd([exename, options...]), GLOB_ENV))
     else
         withenv("JULIA_PROJECT"=>"@.") do
             run(Cmd([exename, options...]))

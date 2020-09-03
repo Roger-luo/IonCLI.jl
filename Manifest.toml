@@ -13,9 +13,9 @@ uuid = "8bf52ea8-c179-5cab-976a-9e18b702a9bc"
 
 [[Comonicon]]
 deps = ["CRC32c", "ExprTools", "Libdl", "Logging", "Markdown", "MatchCore", "PackageCompiler", "Pkg"]
-git-tree-sha1 = "35f2f3828f49dd5a6ac146835bf305b3d87642e6"
+git-tree-sha1 = "914f15d727636d99f26f5a317bfd6b00bcd28d90"
 uuid = "863f3e99-da2a-4334-8734-de3dacbe5542"
-version = "0.6.1"
+version = "0.6.2"
 
 [[DataAPI]]
 git-tree-sha1 = "176e23402d80e7743fc26c19c681bfb11246af32"
@@ -125,9 +125,9 @@ uuid = "a63ad114-7e13-5084-954f-fe012c677804"
 
 [[Mustache]]
 deps = ["Printf", "Tables"]
-git-tree-sha1 = "3d07128636eddde25a17aced63dbcedbce71a79d"
+git-tree-sha1 = "17e60d71d720c33ac2fbac21298ee495bae27587"
 uuid = "ffc61752-8dc7-55ee-8c37-f3e9cdd09e70"
-version = "1.0.4"
+version = "1.0.5"
 
 [[OrderedCollections]]
 git-tree-sha1 = "293b70ac1780f9584c89268a6e2a560d938a7065"
@@ -158,9 +158,9 @@ uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 
 [[PkgTemplates]]
 deps = ["Dates", "InteractiveUtils", "LibGit2", "Mustache", "Parameters", "Pkg", "REPL", "UUIDs"]
-git-tree-sha1 = "8574502cf63ac9bd82bee38fec39c629a29653b1"
+git-tree-sha1 = "ce6b280fc73dd6f4b308c6681b23f8ebe0f8cf98"
 uuid = "14b8a8f1-9102-5b29-a752-f990bacb7fe1"
-version = "0.7.8"
+version = "0.7.10"
 
 [[Printf]]
 deps = ["Unicode"]
@@ -176,9 +176,9 @@ uuid = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
 [[RegistryTools]]
 deps = ["AutoHashEquals", "LibGit2", "Pkg", "UUIDs"]
-git-tree-sha1 = "ea27832a31084895842c77e4f78f5beea9677abd"
+git-tree-sha1 = "5270a369341e32d0612291d1665133449b074da8"
 uuid = "d1eb7eb1-105f-429d-abf5-b0f65cb9e2c4"
-version = "1.5.0"
+version = "1.5.1"
 
 [[SHA]]
 uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
