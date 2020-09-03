@@ -37,10 +37,10 @@ pkg> add IonCLI#master
 
 add `~/.julia/bin` to your `PATH`, and type `ion -h` to check help message.
 
-Or you can use [Comonicon](https://github.com/Roger-luo/Comonicon.jl) to install paths automatically
+Or you can install paths automatically
 
 ```julia
-using Comonicon.BuildTools; BuildTools.install_env_path()
+using IonCLI; IonCLI.comonicon_install_path()
 ```
 
 to install the `PATH` and auto-completion `FPATH` automatically. If you don't have oh-my-zsh installed,
