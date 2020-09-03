@@ -23,10 +23,8 @@ search a package.
         if !omit
             if !isempty(token)
                 auth = GitHub.authenticate(token)
-            elseif haskey(ENV, "GITHUB_AUTH")
-                auth = GitHub.authenticate(ENV["GITHUB_AUTH"])
-            elseif haskey(ENV, "GITHUB_TOKEN")
-                auth = GitHub.authenticate(ENV["GITHUB_TOKEN"])
+            else
+                auth = GitHub.authenticate(read_auth())
             end
         end
 
@@ -115,7 +113,10 @@ end
 function fetch_repo(reg, pkginfo; options...)
     pkg = TOML.parsefile(joinpath(reg.path, pkginfo["path"], "Package.toml"))
     url = pkg["repo"]
+    return fetch_repo_from_url(url; options...)    
+end
 
+function fetch_repo_from_url(url; options...)
     HTTPS_GITHUB = "https://github.com/"
     GIT_GITHUB = "git@github.com:"
     if startswith(url, HTTPS_GITHUB) && endswith(url, ".git")
