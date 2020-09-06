@@ -13,9 +13,9 @@ uuid = "8bf52ea8-c179-5cab-976a-9e18b702a9bc"
 
 [[Comonicon]]
 deps = ["CRC32c", "ExprTools", "Libdl", "Logging", "Markdown", "MatchCore", "PackageCompiler", "Pkg"]
-git-tree-sha1 = "914f15d727636d99f26f5a317bfd6b00bcd28d90"
+git-tree-sha1 = "600084bd691ce22eff4645ce162c55f10b8154ee"
 uuid = "863f3e99-da2a-4334-8734-de3dacbe5542"
-version = "0.6.2"
+version = "0.6.3"
 
 [[DataAPI]]
 git-tree-sha1 = "176e23402d80e7743fc26c19c681bfb11246af32"
