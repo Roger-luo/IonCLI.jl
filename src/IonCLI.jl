@@ -52,6 +52,7 @@ include(joinpath("templates", "default.jl"))
 include(joinpath("templates", "command.jl"))
 include(joinpath("templates", "from_file.jl"))
 
+include("install.jl")
 include("clone.jl")
 include("release.jl")
 include("search.jl")
@@ -59,6 +60,15 @@ include("utils.jl")
 
 
 @main name="ion" doc="The Ion manager."
+
+function julia_main()::Cint
+    try
+        return command_main()
+    catch
+        Base.invokelatest(Base.display_error, Base.catch_stack())
+        return 1
+    end
+end
 
 include("precompile.jl")
 _precompile_()
