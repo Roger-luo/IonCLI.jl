@@ -1,4 +1,5 @@
 .DS_Store
+/build/
 /dev/
 /deps/build.log
 /deps/precompile.jl
