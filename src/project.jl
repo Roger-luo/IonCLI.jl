@@ -42,7 +42,7 @@ add package/project to the closest project.
 
 """
 @cast function add(urls...; glob::Bool=false)
-    isempty(urls) || error("expect a package name or url")
+    isempty(urls) && error("expect a package name or url")
     packages = join(urls, " ")
 
     withproject(
