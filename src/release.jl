@@ -99,7 +99,7 @@ release a package.
 # Arguments
 
 - `version`: version number you want to release. Can be a specific version, "current" or either of $(VERSION_TOKENS)
-- `path`: path to the project you want to release, default is the current working directory.
+- `path`: path to the project you want to release.
 
 # Options
 
@@ -108,7 +108,7 @@ release a package.
     the package in the General registry. Or the user needs to specify
     the registry to register using this option.
 
-- `-b, --branch <branch name>`: branch you want to register, use master branch by default.
+- `-b, --branch <branch name>`: branch you want to register.
 
 # Flags
 

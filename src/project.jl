@@ -41,8 +41,9 @@ add package/project to the closest project.
 - `-g, --glob`: add package to global shared environment.
 
 """
-@cast function add(url, urls...; glob::Bool=false)
-    packages = join([url, urls...], " ")
+@cast function add(urls...; glob::Bool=false)
+    isempty(urls) || error("expect a package name or url")
+    packages = join(urls, " ")
 
     withproject(
         "pkg\"add $packages\"",

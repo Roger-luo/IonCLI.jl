@@ -18,7 +18,7 @@ create a project or package.
 # Options
 
 - `--user <name>`: your GitHub user name for this package.
-- `--template <template name>`: template name, default template is "default".
+- `--template <template name>`: template name.
 
 # Flags
 
