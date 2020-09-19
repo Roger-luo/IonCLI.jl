@@ -2,11 +2,9 @@
 /build/
 /dev/
 /deps/build.log
-/deps/precompile.jl
 /deps/lib
 .vscode
 /bin/
 
 /test/dummy/
 /test/Foo/
-

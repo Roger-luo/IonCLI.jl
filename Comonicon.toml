@@ -13,6 +13,9 @@ incremental=false
 filter_stdlibs=true
 cpu_target="x86-64"
 
+[sysimg.precompile]
+statements_file = ["statements.jl"]
+
 [download]
 host="github.com"
 user="Roger-luo"
