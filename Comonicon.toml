@@ -2,16 +2,23 @@ name = "ion"
 
 [install]
 completion=true
-export_path=true
 quiet=false
 compile="min"
 optimize=2
 
 [sysimg]
-path="deps/lib"
 incremental=false
 filter_stdlibs=true
-cpu_target="x86-64"
+
+[sysimg.precompile]
+statements_file = ["statements.jl"]
+
+[application]
+incremental=true
+filter_stdlibs=false
+
+[application.precompile]
+statements_file = ["statements.jl"]
 
 [download]
 host="github.com"

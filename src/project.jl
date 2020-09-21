@@ -9,7 +9,7 @@ function withproject(command, glob, action_msg, compile_min=true)
 
     script *= command
 
-    exename = joinpath(Sys.BINDIR::String, Base.julia_exename())
+    exename = joinpath(Sys.BINDIR, Base.julia_exename())
 
     options = []
     if compile_min

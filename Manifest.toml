@@ -13,9 +13,14 @@ uuid = "8bf52ea8-c179-5cab-976a-9e18b702a9bc"
 
 [[Comonicon]]
 deps = ["CRC32c", "ExprTools", "Libdl", "Logging", "Markdown", "MatchCore", "PackageCompiler", "Pkg"]
-git-tree-sha1 = "186a97c14f90b456ab06b910e7c8f470412a8aaf"
+git-tree-sha1 = "dc0cd1333f545793b981b28c1130e4865744c353"
 uuid = "863f3e99-da2a-4334-8734-de3dacbe5542"
-version = "0.7.1"
+version = "0.8.0"
+
+[[Crayons]]
+git-tree-sha1 = "3f71217b538d7aaee0b69ab47d9b7724ca8afa0d"
+uuid = "a8cc5b0e-0ffa-5ad4-8c14-923d3ee1735f"
+version = "4.0.4"
 
 [[DataAPI]]
 git-tree-sha1 = "176e23402d80e7743fc26c19c681bfb11246af32"
@@ -46,6 +51,9 @@ git-tree-sha1 = "7fce513fcda766962ff67c5596cb16c463dfd371"
 uuid = "e2ba6199-217a-4e67-a87a-7c52f15ade04"
 version = "0.1.2"
 
+[[FileWatching]]
+uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
+
 [[GitHub]]
 deps = ["Base64", "Dates", "HTTP", "JSON", "MbedTLS", "Sockets"]
 git-tree-sha1 = "07e94aa019727a2d05b73b14f1e3b8f130c8dbc8"
@@ -54,9 +62,9 @@ version = "5.1.7"
 
 [[HTTP]]
 deps = ["Base64", "Dates", "IniFile", "MbedTLS", "Sockets"]
-git-tree-sha1 = "2ac03263ce44be4222342bca1c51c36ce7566161"
+git-tree-sha1 = "c7ec02c4c6a039a98a15f955462cd7aea5df4508"
 uuid = "cd3eb016-35fb-5094-929b-558a96fad6f3"
-version = "0.8.17"
+version = "0.8.19"
 
 [[IniFile]]
 deps = ["Test"]
@@ -89,6 +97,12 @@ uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 [[LinearAlgebra]]
 deps = ["Libdl"]
 uuid = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+
+[[LiveServer]]
+deps = ["Crayons", "FileWatching", "HTTP", "Pkg", "Sockets", "Test"]
+git-tree-sha1 = "410922f18d82f61dcf2b1d012bdb11de7a173a18"
+uuid = "16fef848-5104-11e9-1b77-fb7a48bbb589"
+version = "0.5.5"
 
 [[LocalRegistry]]
 deps = ["Pkg", "Random", "RegistryTools", "UUIDs"]

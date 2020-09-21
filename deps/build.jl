@@ -1,2 +1,1 @@
-using Comonicon, IonCLI
-Comonicon.install(IonCLI)
+using IonCLI; IonCLI.comonicon_install()
