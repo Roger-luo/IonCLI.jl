@@ -13,7 +13,7 @@ uuid = "8bf52ea8-c179-5cab-976a-9e18b702a9bc"
 
 [[Comonicon]]
 deps = ["CRC32c", "ExprTools", "Libdl", "Logging", "Markdown", "MatchCore", "PackageCompiler", "Pkg"]
-git-tree-sha1 = "dc0cd1333f545793b981b28c1130e4865744c353"
+path = "/Users/roger/.julia/dev/Comonicon"
 uuid = "863f3e99-da2a-4334-8734-de3dacbe5542"
 version = "0.8.0"
 
