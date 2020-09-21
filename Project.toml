@@ -17,6 +17,7 @@ Comonicon = "863f3e99-da2a-4334-8734-de3dacbe5542"
 
 [compat]
 LocalRegistry = "0.3"
+LiveServer = "0.5"
 GitHub = "5.1"
 StringDistances = "0.8"
 PkgTemplates = "0.7"
