@@ -59,8 +59,8 @@ include("release.jl")
 include("search.jl")
 include("utils.jl")
 
-
-@main name="ion" doc="The Ion manager."
+"The Ion manager."
+@main
 
 include("precompile.jl")
 _precompile_()
