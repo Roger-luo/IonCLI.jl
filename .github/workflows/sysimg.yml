@@ -1,4 +1,4 @@
-name: Tarballs
+name: SysImg
 on:
     push:
       # Sequence of patterns matched against refs/tags
@@ -24,21 +24,12 @@ jobs:
     - run: julia --project -e "using Pkg; Pkg.instantiate()"
     - run: julia --project -e "using Pkg; Pkg.status()"
     - run: |
-        julia --project deps/build.jl tarball
-    - name: Upload Application tarball to release
+        julia --project deps/build.jl sysimg tarball
+    - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ./build/*.tar.gz
-        tag: ${{ github.ref }}
-        overwrite: true
-        file_glob: true
-    - name: Upload SysImg tarball to release
-    uses: svenstaro/upload-release-action@v2
-    with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ./deps/*.tar.gz
         tag: ${{ github.ref }}
         overwrite: true
         file_glob: true
-  
