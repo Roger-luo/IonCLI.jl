@@ -1,4 +1,4 @@
-name: SysImage
+name: Application
 on:
     push:
       # Sequence of patterns matched against refs/tags
@@ -24,12 +24,12 @@ jobs:
     - run: julia --project -e "using Pkg; Pkg.instantiate()"
     - run: julia --project -e "using Pkg; Pkg.status()"
     - run: |
-        julia --project deps/build.jl sysimg
+        julia --project deps/build.jl app
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ./deps/*.tar.gz
+        file: ./build/*.tar.gz
         tag: ${{ github.ref }}
         overwrite: true
         file_glob: true
