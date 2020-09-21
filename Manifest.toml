@@ -13,9 +13,9 @@ uuid = "8bf52ea8-c179-5cab-976a-9e18b702a9bc"
 
 [[Comonicon]]
 deps = ["CRC32c", "ExprTools", "Libdl", "Logging", "Markdown", "MatchCore", "PackageCompiler", "Pkg"]
-path = "/Users/roger/.julia/dev/Comonicon"
+git-tree-sha1 = "dc0cd1333f545793b981b28c1130e4865744c353"
 uuid = "863f3e99-da2a-4334-8734-de3dacbe5542"
-version = "0.7.1"
+version = "0.8.0"
 
 [[Crayons]]
 git-tree-sha1 = "3f71217b538d7aaee0b69ab47d9b7724ca8afa0d"
@@ -62,9 +62,9 @@ version = "5.1.7"
 
 [[HTTP]]
 deps = ["Base64", "Dates", "IniFile", "MbedTLS", "Sockets"]
-git-tree-sha1 = "2ac03263ce44be4222342bca1c51c36ce7566161"
+git-tree-sha1 = "c7ec02c4c6a039a98a15f955462cd7aea5df4508"
 uuid = "cd3eb016-35fb-5094-929b-558a96fad6f3"
-version = "0.8.17"
+version = "0.8.19"
 
 [[IniFile]]
 deps = ["Test"]
