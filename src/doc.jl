@@ -48,8 +48,8 @@ serve documentation.
 - `--doc-env`: is a boolean switch to make the server start by activating the 
     doc environment or not (i.e. the Project.toml in docs/).
 """
-@cast function serve(;verbose::Bool=false, literate="", doc_env::Bool=false, foldername="docs")
-    return servedocs(;verbose=verbose, literate=literate, doc_env=doc_env, foldername=foldername)
+@cast function serve(;verbose::Bool=false, literate="", foldername="docs")
+    servedocs(;verbose=verbose, literate=literate, doc_env=true, foldername=abspath(foldername))
 end
 
 end
