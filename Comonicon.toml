@@ -11,7 +11,7 @@ incremental=false
 filter_stdlibs=true
 
 [sysimg.precompile]
-statements_file = ["statements.jl"]
+execution_file = ["precompile.jl"]
 
 [application]
 incremental=true
