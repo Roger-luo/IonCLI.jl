@@ -20,7 +20,9 @@ cd(tempdir()) do
     IonBase.update_version!(project, "major")
     rm("Foo"; recursive=true, force=true)
 
-    IonCLI.command_main(["clone", "IonBase"])    
+    rm("IonBase"; recursive=true, force=true)
+    IonCLI.command_main(["clone", "IonBase"])
+    rm("IonBase"; recursive=true, force=true)    
 end
 
 IonCLI.command_main(["search", "Yao"])
