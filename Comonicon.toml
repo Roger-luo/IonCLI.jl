@@ -11,14 +11,14 @@ incremental=false
 filter_stdlibs=true
 
 [sysimg.precompile]
-execution_file = ["precompile.jl"]
+statements_file = ["statements.jl"]
 
 [application]
 incremental=true
 filter_stdlibs=false
 
 [application.precompile]
-execution_file = ["precompile.jl"]
+statements_file = ["statements.jl"]
 
 [download]
 host="github.com"

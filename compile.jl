@@ -11,8 +11,6 @@ end
 SnoopCompile.@snoopc ["--project=$(project_path)"] "/tmp/ion_compiles.log" begin
     using IonCLI, Comonicon
     include(Comonicon.PATH.project(IonCLI, "deps", "precompile.jl"))
-    include(Comonicon.PATH.project(IonCLI, "test", "runtests.jl"))
-    IonCLI.command_main(["search", "Yao"])
 end
 
 ### Parse the compiles and generate precompilation scripts
