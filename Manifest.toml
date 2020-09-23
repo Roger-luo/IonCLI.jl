@@ -77,10 +77,10 @@ deps = ["Markdown"]
 uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 
 [[IonBase]]
-deps = ["Comonicon", "GitHub", "LiveServer", "LocalRegistry", "OrderedCollections", "Pkg", "PkgTemplates", "RegistryTools", "StringDistances", "Test"]
-path = "../IonBase"
+deps = ["Comonicon", "GitHub", "LiveServer", "LocalRegistry", "OrderedCollections", "Pkg", "PkgTemplates", "RegistryTools", "StringDistances"]
+git-tree-sha1 = "650f11b9b227c81de380c0882f2f82e41dffd004"
 uuid = "ca8f4450-19af-48ec-a412-7beb1ac39672"
-version = "0.1.0"
+version = "0.2.0"
 
 [[IteratorInterfaceExtensions]]
 git-tree-sha1 = "a3f24677c21f5bbe9d2a714f95dcd58337fb2856"
