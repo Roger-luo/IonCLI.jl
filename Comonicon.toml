@@ -7,8 +7,8 @@ compile="min"
 optimize=2
 
 [sysimg]
-incremental=false
-filter_stdlibs=true
+incremental=true
+filter_stdlibs=false
 
 [sysimg.precompile]
 statements_file = ["statements.jl"]
