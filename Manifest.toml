@@ -14,8 +14,6 @@ uuid = "8bf52ea8-c179-5cab-976a-9e18b702a9bc"
 [[Comonicon]]
 deps = ["CRC32c", "ExprTools", "Libdl", "Logging", "Markdown", "MatchCore", "PackageCompiler", "Pkg"]
 git-tree-sha1 = "52b63a0ed26222443932786ef00ddb0e91077eba"
-repo-rev = "master"
-repo-url = "https://github.com/Roger-luo/Comonicon.jl.git"
 uuid = "863f3e99-da2a-4334-8734-de3dacbe5542"
 version = "0.9.0"
 
@@ -80,11 +78,9 @@ uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 
 [[IonBase]]
 deps = ["Comonicon", "GitHub", "LiveServer", "LocalRegistry", "OrderedCollections", "Pkg", "PkgTemplates", "RegistryTools", "StringDistances"]
-git-tree-sha1 = "61364584e7a27f0ab86709501218187677c2b128"
-repo-rev = "master"
-repo-url = "https://github.com/Roger-luo/IonBase.jl.git"
+git-tree-sha1 = "7c065fd4789f7cae83b7d5a90cd1cfc8c9a25b5a"
 uuid = "ca8f4450-19af-48ec-a412-7beb1ac39672"
-version = "0.3.4"
+version = "0.3.5"
 
 [[IteratorInterfaceExtensions]]
 git-tree-sha1 = "a3f24677c21f5bbe9d2a714f95dcd58337fb2856"
