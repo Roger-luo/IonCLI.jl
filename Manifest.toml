@@ -13,11 +13,11 @@ uuid = "8bf52ea8-c179-5cab-976a-9e18b702a9bc"
 
 [[Comonicon]]
 deps = ["CRC32c", "ExprTools", "Libdl", "Logging", "Markdown", "MatchCore", "PackageCompiler", "Pkg"]
-git-tree-sha1 = "59b9760e00dd8d1ca4a5d0b7685bead0b6a5295c"
+git-tree-sha1 = "52b63a0ed26222443932786ef00ddb0e91077eba"
 repo-rev = "master"
 repo-url = "https://github.com/Roger-luo/Comonicon.jl.git"
 uuid = "863f3e99-da2a-4334-8734-de3dacbe5542"
-version = "0.8.2"
+version = "0.9.0"
 
 [[Crayons]]
 git-tree-sha1 = "3f71217b538d7aaee0b69ab47d9b7724ca8afa0d"
@@ -80,11 +80,11 @@ uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 
 [[IonBase]]
 deps = ["Comonicon", "GitHub", "LiveServer", "LocalRegistry", "OrderedCollections", "Pkg", "PkgTemplates", "RegistryTools", "StringDistances"]
-git-tree-sha1 = "1f154ef3618b659f80bf1d8ee01f814611acb912"
+git-tree-sha1 = "f24b79162d4bd9bc64774b971548ae6e8a69bb28"
 repo-rev = "master"
 repo-url = "https://github.com/Roger-luo/IonBase.jl.git"
 uuid = "ca8f4450-19af-48ec-a412-7beb1ac39672"
-version = "0.3.3"
+version = "0.4.0"
 
 [[IteratorInterfaceExtensions]]
 git-tree-sha1 = "a3f24677c21f5bbe9d2a714f95dcd58337fb2856"

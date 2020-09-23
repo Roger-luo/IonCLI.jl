@@ -9,5 +9,5 @@ IonBase = "ca8f4450-19af-48ec-a412-7beb1ac39672"
 
 [compat]
 Comonicon = "0.9"
-IonBase = "0.3"
+IonBase = "0.4"
 julia = "1.4"
