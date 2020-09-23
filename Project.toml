@@ -10,3 +10,4 @@ IonBase = "ca8f4450-19af-48ec-a412-7beb1ac39672"
 [compat]
 julia = "1.4"
 Comonicon = "0.8"
+IonBase = "0.2"
