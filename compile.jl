@@ -1,9 +1,5 @@
 using SnoopCompile, Pkg
 project_path = dirname(@__FILE__)
-rm(joinpath(project_path, "src", "precompile.jl"); force=true)
-open(joinpath(project_path, "src", "precompile.jl"), "w+") do io
-    println(io, "_precompile_() = nothing")
-end
 
 ### Log the compiles
 # This only needs to be run once (to generate "/tmp/comonicon_compiles.log")
