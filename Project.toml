@@ -4,10 +4,10 @@ authors = ["Roger-luo <rogerluo.rl18@gmail.com> and contributors"]
 version = "0.8.2"
 
 [deps]
-IonBase = "ca8f4450-19af-48ec-a412-7beb1ac39672"
 Comonicon = "863f3e99-da2a-4334-8734-de3dacbe5542"
+IonBase = "ca8f4450-19af-48ec-a412-7beb1ac39672"
 
 [compat]
-julia = "1.4"
-IonBase = "0.3"
 Comonicon = "0.9"
+IonBase = "0.3"
+julia = "1.4"
