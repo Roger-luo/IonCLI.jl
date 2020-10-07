@@ -57,11 +57,11 @@ mkdir -p $DOWNLOAD_CACHE
 mkdir -p $APP_PATH
 mkdir -p $BIN_PATH
 
-echo "Downloading tarball:"
-echo "${BLUE}$TARBALL_URL${NC}"
-echo ""
-echo "To: ${BLUE}$TARBALL_PATH${NC}"
-echo ""
+printf "Downloading tarball:"
+printf "${BLUE}$TARBALL_URL${NC}"
+printf ""
+printf "To: ${BLUE}$TARBALL_PATH${NC}"
+printf ""
 # curl -L -o $TARBALL_PATH $TARBALL_URL
 tar -zxf $TARBALL_PATH -C $APP_PATH
 ln -s -f $APP_PATH/ion/bin/ion $BIN_PATH/ion
