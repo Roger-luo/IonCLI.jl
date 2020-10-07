@@ -63,7 +63,8 @@ printf "${BLUE}$TARBALL_URL${NC}"
 echo
 printf "To: ${BLUE}$TARBALL_PATH${NC}"
 echo
-# curl -L -o $TARBALL_PATH $TARBALL_URL
+
+curl -L -o $TARBALL_PATH $TARBALL_URL
 tar -zxf $TARBALL_PATH -C $APP_PATH
 ln -s -f $APP_PATH/ion/bin/ion $BIN_PATH/ion
 cp $APP_PATH/ion/completions/$SHELL_EXT.completion $COMPLETION_PATH/_ion
@@ -85,6 +86,5 @@ if [ RUN_HINT == true ]; then
     echo ""
 fi
 
-# echo $PREFIX
-# "https://github.com/Roger-luo/IonCLI.jl/releases/download/v0.8.5/ion-application-0.8.5-linux-x86_64.tar.gz"
-#  https://github.com/Roger-luo/IonCLI.jl/releases/download/v0.8.5/ion-application-v0.8.5-darwin-x86_64.tar.gz
+# clean up
+rm $TARBALL_PATH
