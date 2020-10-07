@@ -1,0 +1,89 @@
+#/usr/bin/env bash
+# colors
+RED='\033[1;31m'
+BLUE='\033[1;34m'
+BOLD='\033[1;37m'
+LIGHT_GRAY='\033[0;37m'
+NC='\033[0m'
+
+RELEASE_URL=$(curl -Ls -o /dev/null -w %\{url_effective\} https://github.com/Roger-luo/IonCLI.jl/releases/latest)
+_VERSION=$(basename $RELEASE_URL)
+VERSION=${_VERSION#"v"}
+DOWNLOAD_URL="https://github.com/Roger-luo/IonCLI.jl/releases/download/$_VERSION"
+ARCH=`uname -m`
+PREFIX=${PREFIX:="$HOME/.julia"}
+DOWNLOAD_CACHE="$PREFIX/cache"
+APP_PATH="$PREFIX/applications"
+BIN_PATH="$PREFIX/bin"
+COMPLETION_PATH="$PREFIX/completions"
+SHELL_EXT=$(basename $SHELL)
+SHELLRC="~/.${SHELL_EXT}rc"
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    SYS="linux"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    SYS="darwin"
+else
+    printf "${RED}system $OSTYPE not supported${NC}" >&2;
+    exit 1;
+fi
+
+TARBALL_URL="$DOWNLOAD_URL/ion-application-$VERSION-$SYS-$ARCH.tar.gz"
+TARBALL_PATH="$DOWNLOAD_CACHE/ion-$VERSION.tar.gz"
+
+function add_bin() {
+    echo "The folder '$BIN_PATH' is not on your PATH"
+    read -p "Do you want to add '$BIN_PATH' into your PATH? (y/N) " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy] ]]; then
+        echo "Aborted"
+        exit 1
+    fi
+    echo 'export PATH="'"$BIN_PATH"':$PATH"' | tee -a $SHELLRC
+}
+
+function add_completion() {
+    echo "The folder '$COMPLETION_PATH' is not on your FPATH"
+    read -p "Do you want to add '$COMPLETION_PATH' into your FPATH? (y/N) " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy] ]]; then
+        echo "Aborted"
+        exit 1
+    fi
+    echo 'export FPATH="'"$COMPLETION_PATH"':$FPATH"' | tee -a $SHELLRC
+}
+
+mkdir -p $DOWNLOAD_CACHE
+mkdir -p $APP_PATH
+mkdir -p $BIN_PATH
+
+echo "Downloading tarball:"
+echo "${BLUE}$TARBALL_URL${NC}"
+echo ""
+echo "To: ${BLUE}$TARBALL_PATH${NC}"
+echo ""
+# curl -L -o $TARBALL_PATH $TARBALL_URL
+tar -zxf $TARBALL_PATH -C $APP_PATH
+ln -s -f $APP_PATH/ion/bin/ion $BIN_PATH/ion
+cp $APP_PATH/ion/completions/$SHELL_EXT.completion $COMPLETION_PATH/_ion
+
+RUN_HINT=false
+if [[ ! ":$PATH:" == *":$BIN_PATH:"* ]]; then
+    add_bin
+    RUN_HINT=true
+fi
+
+if [[ ! ":$FPATH:" == *":$COMPLETION_PATH:"* ]]; then
+    add_completion
+    RUN_HINT=true
+fi
+
+if [ RUN_HINT == true ]; then
+    echo ""
+    echo "run 'source $SHELLRC' or restart your bash to reload the PATH"
+    echo ""
+fi
+
+# echo $PREFIX
+# "https://github.com/Roger-luo/IonCLI.jl/releases/download/v0.8.5/ion-application-0.8.5-linux-x86_64.tar.gz"
+#  https://github.com/Roger-luo/IonCLI.jl/releases/download/v0.8.5/ion-application-v0.8.5-darwin-x86_64.tar.gz
