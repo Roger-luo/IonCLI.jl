@@ -24,13 +24,13 @@ uuid = "8bf52ea8-c179-5cab-976a-9e18b702a9bc"
 
 [[Comonicon]]
 deps = ["CRC32c", "Configurations", "Crayons", "ExprTools", "Libdl", "Logging", "Markdown", "MatchCore", "PackageCompiler", "Pkg", "TOML"]
-path = "../Comonicon"
+git-tree-sha1 = "4781bd2ab130f6bb6cb579147da5d33af8f598fa"
 uuid = "863f3e99-da2a-4334-8734-de3dacbe5542"
 version = "0.10.0"
 
 [[Configurations]]
 deps = ["Crayons", "ExprTools", "MatchCore", "OrderedCollections", "TOML"]
-path = "../Configurations"
+git-tree-sha1 = "0105cf8be21efd8c99cbcb7e67b4e2e03fb04581"
 uuid = "5218b696-f38b-4ac9-8b61-a12ec717816d"
 version = "0.4.0"
 
@@ -100,7 +100,7 @@ deps = ["Markdown"]
 uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 
 [[IonBase]]
-deps = ["Comonicon", "Configurations", "Crayons", "Downloads", "GitHub", "JSON", "LiveServer", "LocalRegistry", "OrderedCollections", "Pkg", "PkgTemplates", "ProgressMeter", "RegistryTools", "SHA", "StringDistances", "TOML", "UUIDs"]
+deps = ["Comonicon", "Configurations", "Crayons", "Downloads", "GitHub", "JSON", "LibGit2", "LiveServer", "LocalRegistry", "OrderedCollections", "Pkg", "PkgTemplates", "ProgressMeter", "SHA", "StringDistances", "TOML", "UUIDs"]
 path = "../IonBase"
 uuid = "ca8f4450-19af-48ec-a412-7beb1ac39672"
 version = "0.4.0"

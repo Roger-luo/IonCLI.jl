@@ -11,7 +11,7 @@ _VERSION=$(basename $RELEASE_URL)
 VERSION=${_VERSION#"v"}
 DOWNLOAD_URL="https://github.com/Roger-luo/IonCLI.jl/releases/download/$_VERSION"
 ARCH=`uname -m`
-PREFIX=${PREFIX:="$HOME/.julia"}
+PREFIX=${PREFIX:="$HOME/.ion"}
 DOWNLOAD_CACHE="$PREFIX/cache"
 APP_PATH="$PREFIX/applications"
 BIN_PATH="$PREFIX/bin"

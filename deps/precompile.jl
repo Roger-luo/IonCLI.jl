@@ -1,4 +1,4 @@
-using IonCLI, IonBase, Comonicon
+using IonCLI, IonBase, Comonicon, Pkg
 # help msgs
 IonCLI.command_main(["-h"]);
 for cmd in keys(IonCLI.CASTED_COMMANDS)
@@ -21,5 +21,5 @@ end
 # end
 
 IonCLI.command_main(["search", "Yao"])
-
+Pkg.activate(pkgdir(IonBase))
 include(joinpath(pkgdir(IonBase), "test", "runtests.jl"))
