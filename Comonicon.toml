@@ -11,14 +11,15 @@ incremental=true
 filter_stdlibs=false
 
 [sysimg.precompile]
-statements_file = ["deps/statements.jl"]
+execution_file = ["deps/precompile.jl"]
 
 [application]
 incremental=true
 filter_stdlibs=false
+c_driver_program = "deps/wrapper.c"
 
 [application.precompile]
-statements_file = ["deps/statements.jl"]
+execution_file = ["deps/precompile.jl"]
 
 [download]
 host="github.com"

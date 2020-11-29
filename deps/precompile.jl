@@ -7,18 +7,18 @@ for cmd in keys(IonCLI.CASTED_COMMANDS)
     end
 end
 
-path = tempdir()
-cd(path) do
-    rm("Foo"; recursive=true, force=true)
-    IonCLI.command_main(["create", "Foo", "--user=xyz"])
-    rm("Foo"; recursive=true, force=true)
-    IonCLI.command_main(["create", "Foo", "--user=xyz", "--template=comonicon"])
+# path = tempdir()
+# cd(path) do
+#     rm("Foo"; recursive=true, force=true)
+#     IonCLI.command_main(["create", "Foo", "--user=xyz"])
+#     rm("Foo"; recursive=true, force=true)
+#     IonCLI.command_main(["create", "Foo", "--user=xyz", "--template=comonicon"])
 
-    rm("IonBase"; recursive=true, force=true)
-    IonCLI.command_main(["clone", "IonBase"])
-    IonBase.Doc.build(joinpath(path, "IonBase"))
-    rm("IonBase"; recursive=true, force=true)    
-end
+#     rm("IonBase"; recursive=true, force=true)
+#     IonCLI.command_main(["clone", "IonBase"])
+#     IonBase.Doc.build(joinpath(path, "IonBase"))
+#     rm("IonBase"; recursive=true, force=true)    
+# end
 
 IonCLI.command_main(["search", "Yao"])
 
