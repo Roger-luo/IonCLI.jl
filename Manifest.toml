@@ -235,9 +235,11 @@ uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 
 [[PkgTemplates]]
 deps = ["Dates", "InteractiveUtils", "LibGit2", "Mustache", "Parameters", "Pkg", "REPL", "UUIDs"]
-git-tree-sha1 = "bba7908465ec36d6308855ac95d582636a87ebab"
+git-tree-sha1 = "33a6ed1b3b2abf602bebff945807da1d6d1ed1a0"
+repo-rev = "default_template_dir"
+repo-url = "https://github.com/Roger-luo/PkgTemplates.jl.git"
 uuid = "14b8a8f1-9102-5b29-a752-f990bacb7fe1"
-version = "0.7.13"
+version = "0.7.14"
 
 [[Printf]]
 deps = ["Unicode"]
