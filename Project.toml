@@ -1,7 +1,7 @@
 name = "IonCLI"
 uuid = "7a67c3bc-365d-4399-aa69-e9a17770ea1f"
 authors = ["Roger-luo <rogerluo.rl18@gmail.com> and contributors"]
-version = "0.9.0"
+version = "0.10.0-DEV"
 
 [deps]
 Comonicon = "863f3e99-da2a-4334-8734-de3dacbe5542"

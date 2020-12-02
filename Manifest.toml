@@ -100,7 +100,7 @@ deps = ["Markdown"]
 uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 
 [[IonBase]]
-deps = ["Comonicon", "Configurations", "Crayons", "Downloads", "GitHub", "JSON", "LibGit2", "LiveServer", "LocalRegistry", "OrderedCollections", "Pkg", "PkgTemplates", "ProgressMeter", "SHA", "StringDistances", "TOML", "UUIDs"]
+deps = ["Comonicon", "Configurations", "Crayons", "Downloads", "GitHub", "JSON", "LibGit2", "LiveServer", "LocalRegistry", "MatchCore", "OrderedCollections", "Pkg", "PkgTemplates", "ProgressMeter", "SHA", "StringDistances", "TOML", "UUIDs"]
 path = "../IonBase"
 uuid = "ca8f4450-19af-48ec-a412-7beb1ac39672"
 version = "0.4.0"
