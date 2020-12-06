@@ -24,15 +24,17 @@ uuid = "8bf52ea8-c179-5cab-976a-9e18b702a9bc"
 
 [[Comonicon]]
 deps = ["CRC32c", "Configurations", "Crayons", "ExprTools", "Libdl", "Logging", "Markdown", "MatchCore", "PackageCompiler", "Pkg", "TOML"]
-git-tree-sha1 = "4781bd2ab130f6bb6cb579147da5d33af8f598fa"
+git-tree-sha1 = "9ab29d96f0e83e65e3348b0ba9c68a6ace055d3c"
+repo-rev = "master"
+repo-url = "https://github.com/Roger-luo/Comonicon.jl.git"
 uuid = "863f3e99-da2a-4334-8734-de3dacbe5542"
-version = "0.10.0"
+version = "0.10.1"
 
 [[Configurations]]
 deps = ["Crayons", "ExprTools", "MatchCore", "OrderedCollections", "TOML"]
-git-tree-sha1 = "0105cf8be21efd8c99cbcb7e67b4e2e03fb04581"
+git-tree-sha1 = "82b86f1cf55b5d8bb3ded199df2760e7b5ade32c"
 uuid = "5218b696-f38b-4ac9-8b61-a12ec717816d"
-version = "0.4.0"
+version = "0.8.0"
 
 [[Crayons]]
 git-tree-sha1 = "3f71217b538d7aaee0b69ab47d9b7724ca8afa0d"
@@ -85,9 +87,9 @@ version = "5.2.0"
 
 [[HTTP]]
 deps = ["Base64", "Dates", "IniFile", "MbedTLS", "Sockets", "URIs"]
-git-tree-sha1 = "9634200f8e16554cb1620dfb20501483b873df86"
+git-tree-sha1 = "504ca74f27377a25ebfd63b1f5e6ec3e9fb14690"
 uuid = "cd3eb016-35fb-5094-929b-558a96fad6f3"
-version = "0.9.0"
+version = "0.9.1"
 
 [[IniFile]]
 deps = ["Test"]
@@ -101,7 +103,9 @@ uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 
 [[IonBase]]
 deps = ["Comonicon", "Configurations", "Crayons", "Downloads", "GitHub", "JSON", "LibGit2", "LiveServer", "LocalRegistry", "MatchCore", "OrderedCollections", "Pkg", "PkgTemplates", "ProgressMeter", "SHA", "StringDistances", "TOML", "UUIDs"]
-path = "../IonBase"
+git-tree-sha1 = "b7af262c0300bf1d50a212d13c662b0d12471fbe"
+repo-rev = "master"
+repo-url = "../IonBase"
 uuid = "ca8f4450-19af-48ec-a412-7beb1ac39672"
 version = "0.4.0"
 
@@ -225,9 +229,9 @@ version = "0.12.1"
 
 [[Parsers]]
 deps = ["Dates"]
-git-tree-sha1 = "b417be52e8be24e916e34b3d70ec2da7bdf56a68"
+git-tree-sha1 = "9d738ba28afdbd877397fb24d48440244590e039"
 uuid = "69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
-version = "1.0.12"
+version = "1.0.13"
 
 [[Pkg]]
 deps = ["Dates", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "UUIDs"]
@@ -235,7 +239,7 @@ uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 
 [[PkgTemplates]]
 deps = ["Dates", "InteractiveUtils", "LibGit2", "Mustache", "Parameters", "Pkg", "REPL", "UUIDs"]
-git-tree-sha1 = "33a6ed1b3b2abf602bebff945807da1d6d1ed1a0"
+git-tree-sha1 = "20a1742f349450a58af9e9ff9dfef5b4ae62a50f"
 repo-rev = "default_template_dir"
 repo-url = "https://github.com/Roger-luo/PkgTemplates.jl.git"
 uuid = "14b8a8f1-9102-5b29-a752-f990bacb7fe1"
