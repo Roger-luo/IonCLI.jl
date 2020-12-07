@@ -21,6 +21,19 @@ jobs:
       uses: julia-actions/setup-julia@v1
       with:
         version: ${{ matrix.julia-version }}
+    - uses: actions/cache@v1
+        env:
+          cache-name: cache-artifacts
+        with:
+          path: ~/.julia/artifacts
+          key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ hashFiles('**/Project.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-test-${{ env.cache-name }}-
+            ${{ runner.os }}-test-
+            ${{ runner.os }}-
+    - run: |
+          git config --global user.name Tester
+          git config --global user.email te@st.er
     - run: julia --project -e "using Pkg; Pkg.instantiate()"
     - run: julia --project -e "using Pkg; Pkg.status()"
     - run: |
