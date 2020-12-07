@@ -11,8 +11,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        julia-version: ['1.5']
+        version: ['1.5']
         os: [ubuntu-latest, macOS-latest]
+        arch:
+          - x64
 
     steps:
     - name: Checkout code
