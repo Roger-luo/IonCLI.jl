@@ -23,7 +23,7 @@ end
 Pkg.activate(pkgdir(IonBase))
 include(joinpath(pkgdir(IonBase), "test", "runtests.jl"))
 
-Pkg.activate(pkgdir(IonCLI))
+Pkg.activate(dirname(@__DIR__))
 
 module MISC
 
