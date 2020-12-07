@@ -20,6 +20,9 @@ end
 #     rm("IonBase"; recursive=true, force=true)    
 # end
 
-IonCLI.command_main(["search", "Yao"])
 Pkg.activate(pkgdir(IonBase))
 include(joinpath(pkgdir(IonBase), "test", "runtests.jl"))
+
+with_test_ion() do
+    IonCLI.command_main(["search", "Yao"])
+end
