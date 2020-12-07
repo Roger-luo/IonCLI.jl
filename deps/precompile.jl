@@ -23,6 +23,12 @@ end
 Pkg.activate(pkgdir(IonBase))
 include(joinpath(pkgdir(IonBase), "test", "runtests.jl"))
 
+module MISC
+
+include(joinpath(pkgdir(IonBase), "test", "utils.jl"))
+
 with_test_ion() do
     IonCLI.command_main(["search", "Yao"])
+end
+
 end
