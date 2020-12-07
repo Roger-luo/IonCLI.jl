@@ -24,17 +24,15 @@ uuid = "8bf52ea8-c179-5cab-976a-9e18b702a9bc"
 
 [[Comonicon]]
 deps = ["CRC32c", "Configurations", "Crayons", "ExprTools", "Libdl", "Logging", "Markdown", "MatchCore", "PackageCompiler", "Pkg", "TOML"]
-git-tree-sha1 = "9ab29d96f0e83e65e3348b0ba9c68a6ace055d3c"
-repo-rev = "master"
-repo-url = "https://github.com/Roger-luo/Comonicon.jl.git"
+git-tree-sha1 = "8df34e2d57c396533d220806240db90944942ef2"
 uuid = "863f3e99-da2a-4334-8734-de3dacbe5542"
 version = "0.10.1"
 
 [[Configurations]]
 deps = ["Crayons", "ExprTools", "MatchCore", "OrderedCollections", "TOML"]
-git-tree-sha1 = "82b86f1cf55b5d8bb3ded199df2760e7b5ade32c"
+git-tree-sha1 = "40c7b7d51e21ca5e277357cad4a9fa2d470c6813"
 uuid = "5218b696-f38b-4ac9-8b61-a12ec717816d"
-version = "0.8.0"
+version = "0.8.1"
 
 [[Crayons]]
 git-tree-sha1 = "3f71217b538d7aaee0b69ab47d9b7724ca8afa0d"
@@ -102,10 +100,8 @@ deps = ["Markdown"]
 uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 
 [[IonBase]]
-deps = ["Comonicon", "Configurations", "Crayons", "Downloads", "GitHub", "JSON", "LibGit2", "LiveServer", "LocalRegistry", "MatchCore", "OrderedCollections", "Pkg", "PkgTemplates", "ProgressMeter", "SHA", "StringDistances", "TOML", "UUIDs"]
-git-tree-sha1 = "b7af262c0300bf1d50a212d13c662b0d12471fbe"
-repo-rev = "master"
-repo-url = "../IonBase"
+deps = ["Comonicon", "Configurations", "Crayons", "Dates", "Downloads", "GitHub", "InteractiveUtils", "JSON", "LibGit2", "LiveServer", "LocalRegistry", "MatchCore", "Mustache", "OrderedCollections", "Pkg", "ProgressMeter", "SHA", "StringDistances", "TOML", "UUIDs"]
+path = "../IonBase"
 uuid = "ca8f4450-19af-48ec-a412-7beb1ac39672"
 version = "0.4.0"
 
@@ -221,12 +217,6 @@ git-tree-sha1 = "3eee77c94646163f15bd8626acf494360897f890"
 uuid = "9b87118b-4619-50d2-8e1e-99f35a4d4d9d"
 version = "1.2.3"
 
-[[Parameters]]
-deps = ["OrderedCollections", "UnPack"]
-git-tree-sha1 = "38b2e970043613c187bd56a995fe2e551821eb4a"
-uuid = "d96e819e-fc66-5662-9728-84c9c7592b0a"
-version = "0.12.1"
-
 [[Parsers]]
 deps = ["Dates"]
 git-tree-sha1 = "9d738ba28afdbd877397fb24d48440244590e039"
@@ -236,14 +226,6 @@ version = "1.0.13"
 [[Pkg]]
 deps = ["Dates", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "UUIDs"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
-
-[[PkgTemplates]]
-deps = ["Dates", "InteractiveUtils", "LibGit2", "Mustache", "Parameters", "Pkg", "REPL", "UUIDs"]
-git-tree-sha1 = "20a1742f349450a58af9e9ff9dfef5b4ae62a50f"
-repo-rev = "default_template_dir"
-repo-url = "https://github.com/Roger-luo/PkgTemplates.jl.git"
-uuid = "14b8a8f1-9102-5b29-a752-f990bacb7fe1"
-version = "0.7.14"
 
 [[Printf]]
 deps = ["Unicode"]
@@ -294,7 +276,9 @@ version = "0.9.1"
 
 [[TOML]]
 deps = ["Dates"]
-git-tree-sha1 = "d0ac7eaad0fb9f6ba023a1d743edca974ae637c4"
+git-tree-sha1 = "0605c82a8c0f299a25b9d8c8b78feccd955bb791"
+repo-rev = "roger/patch-1"
+repo-url = "https://github.com/Roger-luo/TOML.jl.git"
 uuid = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
 version = "1.0.0"
 
@@ -322,11 +306,6 @@ version = "1.1.0"
 [[UUIDs]]
 deps = ["Random", "SHA"]
 uuid = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
-
-[[UnPack]]
-git-tree-sha1 = "387c1f73762231e86e0c9c5443ce3b4a0a9a0c2b"
-uuid = "3a884ed6-31ef-47d7-9d2a-63182c4928ed"
-version = "1.0.2"
 
 [[Unicode]]
 uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
