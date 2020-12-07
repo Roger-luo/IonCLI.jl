@@ -23,7 +23,11 @@ end
 Pkg.activate(pkgdir(IonBase))
 include(joinpath(pkgdir(IonBase), "test", "runtests.jl"))
 
+Pkg.activate(pkgdir(IonCLI))
+
 module MISC
+
+using IonBase, IonCLI
 
 include(joinpath(pkgdir(IonBase), "test", "utils.jl"))
 
