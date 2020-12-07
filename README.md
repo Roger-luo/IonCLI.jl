@@ -21,33 +21,11 @@ IonCLI is a &nbsp;
     Julia's interactive session (known as REPL)</a> and press <kbd>]</kbd> key in the REPL to use the package mode, then type the following command
 </p>
 
-For stable release
+Copy paste the following line to your terminal.
 
-```julia
-pkg> add IonCLI
+```sh
+bash -ci "$(curl -fsSL https://raw.githubusercontent.com/Roger-luo/IonCLI.jl/master/setup)"
 ```
-
-For current master
-
-```julia
-pkg> add IonCLI#master
-```
-
-## Usage
-
-add `~/.julia/bin` to your `PATH`, and type `ion -h` to check help message.
-
-Or you can install paths automatically
-
-```julia
-using IonCLI; IonCLI.comonicon_install_path()
-```
-
-to install the `PATH` and auto-completion `FPATH` automatically. If you don't have oh-my-zsh installed,
-to enable auto-commpletion you need to add `~/.julia/completions` to your `FPATH` and then add 
-`autoload -Uz compinit && compinit` to your `.zshrc`.
-
-If you fail to download the artifact, you can build the CLI locally via `IonCLI.comonicon_build()`.
 
 ## License
 
