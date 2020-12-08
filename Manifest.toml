@@ -96,9 +96,11 @@ uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 
 [[IonBase]]
 deps = ["Comonicon", "Configurations", "Crayons", "Dates", "Downloads", "GitHub", "InteractiveUtils", "JSON", "LibGit2", "LiveServer", "MatchCore", "Mustache", "OrderedCollections", "Pkg", "ProgressMeter", "SHA", "StringDistances", "TOML", "UUIDs"]
-git-tree-sha1 = "8b32ecb950f1c245d93f2316a08342ec618433c7"
+git-tree-sha1 = "188595181215a97a082915d464914971057fa386"
+repo-rev = "master"
+repo-url = "https://github.com/Roger-luo/IonBase.jl.git"
 uuid = "ca8f4450-19af-48ec-a412-7beb1ac39672"
-version = "0.4.0"
+version = "0.4.2"
 
 [[IteratorInterfaceExtensions]]
 git-tree-sha1 = "a3f24677c21f5bbe9d2a714f95dcd58337fb2856"
