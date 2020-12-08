@@ -96,9 +96,9 @@ uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 
 [[IonBase]]
 deps = ["Comonicon", "Configurations", "Crayons", "Dates", "Downloads", "GitHub", "InteractiveUtils", "JSON", "LibGit2", "LiveServer", "MatchCore", "Mustache", "OrderedCollections", "Pkg", "ProgressMeter", "SHA", "StringDistances", "TOML", "UUIDs"]
-git-tree-sha1 = "8b32ecb950f1c245d93f2316a08342ec618433c7"
+git-tree-sha1 = "bb0592f08999e1afe7ab06ae1d1381cffa18153e"
 uuid = "ca8f4450-19af-48ec-a412-7beb1ac39672"
-version = "0.4.0"
+version = "0.4.1"
 
 [[IteratorInterfaceExtensions]]
 git-tree-sha1 = "a3f24677c21f5bbe9d2a714f95dcd58337fb2856"
@@ -253,9 +253,9 @@ uuid = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 
 [[StringDistances]]
 deps = ["Distances"]
-git-tree-sha1 = "06f0dfb39437741a0fd154f67ceb379dea0c91ac"
+git-tree-sha1 = "a4c05337dfe6c4963253939d2acbdfa5946e8e31"
 uuid = "88034a9c-02f8-509d-84a9-84ec65e18404"
-version = "0.9.1"
+version = "0.10.0"
 
 [[TOML]]
 deps = ["Dates"]
