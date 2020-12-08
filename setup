@@ -12,8 +12,7 @@ VERSION=${_VERSION#"v"}
 DOWNLOAD_URL="https://github.com/Roger-luo/IonCLI.jl/releases/download/$_VERSION"
 ARCH=`uname -m`
 PREFIX=${PREFIX:="$HOME/.ion"}
-DOWNLOAD_CACHE="$PREFIX/cache"
-APP_PATH="$PREFIX/applications"
+TEMP=$(mktemp -d -t ion-$VERSION)
 BIN_PATH="$PREFIX/bin"
 COMPLETION_PATH="$PREFIX/completions"
 SHELL_EXT=$(basename $SHELL)
@@ -29,7 +28,7 @@ else
 fi
 
 TARBALL_URL="$DOWNLOAD_URL/ion-application-$VERSION-$SYS-$ARCH.tar.gz"
-TARBALL_PATH="$DOWNLOAD_CACHE/ion-$VERSION.tar.gz"
+TARBALL_PATH="ion-$VERSION.tar.gz"
 
 function add_bin() {
     echo "The folder '$BIN_PATH' is not on your PATH"
@@ -53,11 +52,6 @@ function add_completion() {
     echo 'export FPATH="'"$COMPLETION_PATH"':$FPATH"' | tee -a $SHELLRC
 }
 
-mkdir -p $DOWNLOAD_CACHE
-mkdir -p $APP_PATH
-mkdir -p $BIN_PATH
-mkdir -p $COMPLETION_PATH
-
 printf "Downloading tarball:"
 echo
 printf "${BLUE}$TARBALL_URL${NC}"
@@ -66,9 +60,9 @@ printf "To: ${BLUE}$TARBALL_PATH${NC}"
 echo
 
 curl -L -o $TARBALL_PATH $TARBALL_URL
-tar -zxf $TARBALL_PATH -C $APP_PATH
-ln -s -f $APP_PATH/ion/bin/ion $BIN_PATH/ion
-cp $APP_PATH/ion/completions/$SHELL_EXT.completion $COMPLETION_PATH/_ion
+tar -zxf $TARBALL_PATH -C $TEMP
+cp -rf $TEMP/ion $PREFIX
+cp $COMPLETION_PATH/$SHELL_EXT.completion $COMPLETION_PATH/_ion
 
 RUN_HINT=false
 if [[ ! ":$PATH:" == *":$BIN_PATH:"* ]]; then
@@ -89,3 +83,4 @@ fi
 
 # clean up
 rm $TARBALL_PATH
+rm -rf $TEMP
