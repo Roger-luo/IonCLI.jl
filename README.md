@@ -8,6 +8,8 @@ A CLI package manager for Julia.
 
 For MacOS users, due to system image compilation issue, you will need to compile this package manually via `using IonCLI; IonCLI.comonicon_build()`.
 
+![demo](demo.gif)
+
 ## Installation
 
 <p>
