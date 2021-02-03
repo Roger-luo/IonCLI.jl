@@ -16,7 +16,7 @@ TEMP=$(mktemp -d -t ion-$VERSION-XXXXX)
 BIN_PATH="$PREFIX/bin"
 COMPLETION_PATH="$PREFIX/completions"
 SHELL_EXT=$(basename $SHELL)
-SHELLRC="~/.${SHELL_EXT}rc"
+SHELLRC="$HOME/.${SHELL_EXT}rc"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     SYS="linux"
