@@ -12,7 +12,7 @@ VERSION=${_VERSION#"v"}
 DOWNLOAD_URL="https://github.com/Roger-luo/IonCLI.jl/releases/download/$_VERSION"
 ARCH=`uname -m`
 PREFIX=${PREFIX:="$HOME/.ion"}
-TEMP=$(mktemp -d -t ion-$VERSION)
+TEMP=$(mktemp -d -t ion-$VERSION-XXXXX)
 BIN_PATH="$PREFIX/bin"
 COMPLETION_PATH="$PREFIX/completions"
 SHELL_EXT=$(basename $SHELL)
