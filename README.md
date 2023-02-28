@@ -1,5 +1,9 @@
 # IonCLI
 
+Please use https://github.com/Roger-luo/ion
+
+---
+
 [![Build Status](https://travis-ci.com/Roger-luo/IonCLI.jl.svg?branch=master)](https://travis-ci.com/Roger-luo/IonCLI.jl)
 
 A CLI package manager for Julia.
